@@ -3,80 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="styles.css">
   <title>BasicCodeKh.org - Learn to Code in Khmer</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Segoe UI', sans-serif; background: #f5f8fa; color: #333; }
-    header {
-      background: #1f2937;
-      color: white;
-      padding: 2rem;
-      text-align: center;
-    }
-    header h1 { font-size: 2.5rem; }
-    .lang-switch {
-      text-align: right;
-      margin: 1rem;
-    }
-    .lang-switch button {
-      padding: 0.4rem 1rem;
-      margin-left: 0.5rem;
-      cursor: pointer;
-      border: none;
-      background: #e5e7eb;
-      border-radius: 5px;
-    }
-    .hero {
-      text-align: center;
-      padding: 3rem 1rem;
-    }
-    .hero h2 { font-size: 2rem; margin-bottom: 1rem; }
-    .hero p { font-size: 1.2rem; max-width: 600px; margin: auto; }
-    .hero a {
-      margin-top: 2rem;
-      display: inline-block;
-      padding: 0.8rem 2rem;
-      background: #10b981;
-      color: white;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .features {
-      max-width: 900px;
-      margin: 3rem auto;
-      padding: 1rem;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-    }
-    .feature {
-      background: white;
-      padding: 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-    .flashcard {
-      text-align: center;
-      margin: 3rem auto;
-      max-width: 700px;
-      padding: 2rem;
-      background: #fef3c7;
-      border-left: 6px solid #f59e0b;
-      font-style: italic;
-      font-size: 1.3rem;
-    }
-    @media (max-width: 768px) {
-      .features {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
 </head>
 <body>
   <header>
     <h1 data-lang="en">BasicCodeKh.org</h1>
-    <h1 data-lang="kh" style="display:none;">គេហទំព័រ BasicCodeKh.org</h1>
+    <h1 data-lang="kh" style="display:none;"> BasicCodeKh.org</h1>
+    <p data-lang="en" style="margin-top: 10px;">Empowering Cambodia through code.</p>
+    <p data-lang="kh" style="display:none; margin-top: 10px;">ជួយជម្រុញការអភិវឌ្ឍបច្ចេកវិទ្យានៅកម្ពុជា។</p>
+    <a 
+    href="https://www.buymeacoffee.com/YOURUSERNAME" 
+    target="_blank" 
+    style="display: inline-block; margin-top: 10px; background: #ffdd00; color: #000; padding: 8px 16px; text-decoration: none; border-radius: 6px; font-weight: bold;">
+    ☕ Donation
+  </a>
   </header>
 
   <div class="lang-switch">
@@ -93,7 +34,9 @@
     <p data-lang="kh" style="display:none;">
       វេទិការៀនកូដឥតគិតថ្លៃសម្រាប់អ្នកចាប់ផ្តើមនៅកម្ពុជា។ រៀនពីដំបូង ដោយអនុវត្តន៍ជាក់ស្តែង និងស្ថាបនាអនាគតរបស់អ្នកក្នុងបច្ចេកវិទ្យា។
     </p>
-    <a href="#">Start Learning</a>
+    <a href="#" data-lang="en" class="cta-btn">Start Learning</a>
+    <a href="#" data-lang="kh" class="cta-btn" style="display:none;">ចាប់ផ្តើមរៀន</a>
+    
   </section>
 
   <section class="features">
@@ -128,12 +71,7 @@
     <p data-lang="kh" style="display:none;">“ជំហានតូចៗរៀងរាល់ថ្ងៃ នាំឲ្យមានលទ្ធផលធំៗនៅថ្ងៃក្រោយ។”</p>
   </section>
 
-  <script>
-    function switchLanguage(lang) {
-      document.querySelectorAll('[data-lang]').forEach(el => {
-        el.style.display = el.dataset.lang === lang ? 'block' : 'none';
-      });
-    }
-  </script>
+
+  <script src="script.js"></script>
 </body>
 </html>
