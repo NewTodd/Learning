@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BasicCodeKh.org - Learn to Code in Khmer</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; background: #f5f8fa; color: #333; }
+    header {
+      background: #1f2937;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+    header h1 { font-size: 2.5rem; }
+    .lang-switch {
+      text-align: right;
+      margin: 1rem;
+    }
+    .lang-switch button {
+      padding: 0.4rem 1rem;
+      margin-left: 0.5rem;
+      cursor: pointer;
+      border: none;
+      background: #e5e7eb;
+      border-radius: 5px;
+    }
+    .hero {
+      text-align: center;
+      padding: 3rem 1rem;
+    }
+    .hero h2 { font-size: 2rem; margin-bottom: 1rem; }
+    .hero p { font-size: 1.2rem; max-width: 600px; margin: auto; }
+    .hero a {
+      margin-top: 2rem;
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      background: #10b981;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .features {
+      max-width: 900px;
+      margin: 3rem auto;
+      padding: 1rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    .feature {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .flashcard {
+      text-align: center;
+      margin: 3rem auto;
+      max-width: 700px;
+      padding: 2rem;
+      background: #fef3c7;
+      border-left: 6px solid #f59e0b;
+      font-style: italic;
+      font-size: 1.3rem;
+    }
+    @media (max-width: 768px) {
+      .features {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 data-lang="en">BasicCodeKh.org</h1>
+    <h1 data-lang="kh" style="display:none;">គេហទំព័រ BasicCodeKh.org</h1>
+  </header>
+
+  <div class="lang-switch">
+    <button onclick="switchLanguage('en')">English</button>
+    <button onclick="switchLanguage('kh')">ភាសាខ្មែរ</button>
+  </div>
+
+  <section class="hero">
+    <h2 data-lang="en">Learn to Code in Khmer and English</h2>
+    <h2 data-lang="kh" style="display:none;">រៀនកូដជាភាសាខ្មែរ និង អង់គ្លេស</h2>
+    <p data-lang="en">
+      A free and beginner-friendly coding platform made for Cambodian learners. Build real projects, learn step-by-step, and grow your future in tech.
+    </p>
+    <p data-lang="kh" style="display:none;">
+      វេទិការៀនកូដឥតគិតថ្លៃសម្រាប់អ្នកចាប់ផ្តើមនៅកម្ពុជា។ រៀនពីដំបូង ដោយអនុវត្តន៍ជាក់ស្តែង និងស្ថាបនាអនាគតរបស់អ្នកក្នុងបច្ចេកវិទ្យា។
+    </p>
+    <a href="#">Start Learning</a>
+  </section>
+
+  <section class="features">
+    <div class="feature">
+      <h3 data-lang="en">📚 Step-by-Step Lessons</h3>
+      <h3 data-lang="kh" style="display:none;">📚 មេរៀនពីដំបូងជាចំណុច</h3>
+      <p data-lang="en">Learn HTML, CSS, and JavaScript from scratch — in your own language.</p>
+      <p data-lang="kh" style="display:none;">រៀន HTML, CSS, និង JavaScript ពីកម្រិតមូលដ្ឋាន ជាភាសាខ្មែរ។</p>
+    </div>
+    <div class="feature">
+      <h3 data-lang="en">💡 Motivation Cards</h3>
+      <h3 data-lang="kh" style="display:none;">💡 ប័ណ្ណជំរុញចិត្ត</h3>
+      <p data-lang="en">Stay inspired as you learn with quotes and challenges built into the platform.</p>
+      <p data-lang="kh" style="display:none;">រក្សាការជឿជាក់ខណៈពេលអ្នករៀនជាមួយប័ណ្ណចម្រុះនៃមតិជំរុញ និងបញ្ហា។</p>
+    </div>
+    <div class="feature">
+      <h3 data-lang="en">🧠 Practice Challenges</h3>
+      <h3 data-lang="kh" style="display:none;">🧠 បញ្ហាសម្រាប់អនុវត្ត</h3>
+      <p data-lang="en">Test your skills with small projects, quizzes, and coding exercises.</p>
+      <p data-lang="kh" style="display:none;">សាកល្បងជំនាញរបស់អ្នកជាមួយគម្រោងតូចៗ មុខសំណួរ និងលំហាត់កូដ។</p>
+    </div>
+    <div class="feature">
+      <h3 data-lang="en">🌱 Built for Cambodia</h3>
+      <h3 data-lang="kh" style="display:none;">🌱 បង្កើតសម្រាប់កម្ពុជា</h3>
+      <p data-lang="en">All content is tailored for Cambodian learners with Khmer translations.</p>
+      <p data-lang="kh" style="display:none;">មាតិកាទាំងអស់ត្រូវបានបកប្រែជាភាសាខ្មែរ ដើម្បីជួយអ្នករៀននៅកម្ពុជា។</p>
+    </div>
+  </section>
+
+  <section class="flashcard">
+    <p data-lang="en">“Small steps every day lead to big results.”</p>
+    <p data-lang="kh" style="display:none;">“ជំហានតូចៗរៀងរាល់ថ្ងៃ នាំឲ្យមានលទ្ធផលធំៗនៅថ្ងៃក្រោយ។”</p>
+  </section>
+
+  <script>
+    function switchLanguage(lang) {
+      document.querySelectorAll('[data-lang]').forEach(el => {
+        el.style.display = el.dataset.lang === lang ? 'block' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>
