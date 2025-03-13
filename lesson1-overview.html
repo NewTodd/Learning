@@ -6,6 +6,51 @@
   <title>Lesson Overview</title>
   <link rel="stylesheet" href="styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer&display=swap" rel="stylesheet">
+  <style>
+    .step-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+      gap: 10px;
+      padding: 1rem 0;
+    }
+
+    .step {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+      border: 2px dashed #555;
+      border-radius: 4px;
+      color: #333;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+
+    .step.completed {
+      background-color: #1a73e8;
+      color: #fff;
+      border-style: solid;
+    }
+
+    .step:hover {
+      transform: scale(1.1);
+    }
+
+    .dark-mode {
+      background-color: #121212;
+      color: #ffffff;
+    }
+
+    .dark-mode .step {
+      color: #ddd;
+      border-color: #aaa;
+    }
+
+    .dark-mode .step.completed {
+      background-color: #3b82f6;
+    }
+  </style>
 </head>
 
 <body>
@@ -51,19 +96,42 @@
       <p data-lang="kh" style="display:none;">អ្នកនឹងរៀនអំពីស្លាក HTML ទូទៅបំផុត ដោយបង្កើតកម្មវិធីរូបថតឆ្មា។</p>
       
       <div class="step-grid">
-        <a href="lesson1.html" class="step">1</a>
-        <a href="lesson2.html" class="step">2</a>
-        <a href="lesson3.html" class="step">3</a>
-        <a href="lesson4.html" class="step">4</a>
-        <a href="lesson5.html" class="step">5</a>
-        <a href="quiz1.html" class="step">6</a>
-        <!-- Add more steps as needed -->
+        <!-- Steps 1 through 30 -->
+        <script>
+          for(let i = 1; i <= 30; i++){
+            document.write(`<a href="lesson${i}.html" class="step">${i}</a>`);
+          }
+          document.write('<a href="project1.html" class="step">pro</a>');
+        </script>
       </div>
     </details>
   </section>
 
-  <script src="script.js"></script>
+  <script>
+    function switchLanguage(lang) {
+      document.querySelectorAll('[data-lang]').forEach(element => {
+        element.style.display = (element.getAttribute('data-lang') === lang) ? '' : 'none';
+      });
+    }
+
+    function toggleTheme() {
+      const body = document.body;
+      body.classList.toggle('dark-mode');
+      const themeToggle = document.getElementById('themeToggle');
+      themeToggle.textContent = body.classList.contains('dark-mode') ? '☀️' : '🌙';
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const steps = document.querySelectorAll('.step-grid .step');
+
+      const completedSteps = JSON.parse(localStorage.getItem('completedSteps') || '[]');
+
+      steps.forEach(step => {
+        if (completedSteps.includes(step.getAttribute('href'))) {
+          step.classList.add('completed');
+        }
+      });
+    });
+  </script>
 </body>
 </html>
-
-  

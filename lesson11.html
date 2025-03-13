@@ -193,6 +193,26 @@
     }
   </script>
   <footer>BasicCodeKH by Todd</footer>
+  <!-- Button to mark lesson as complete -->
+<button id="completeLesson" style="padding:10px 20px; font-weight:bold; cursor:pointer;">
+  Mark Lesson as Complete ✅
+</button>
+
+<script>
+document.getElementById('completeLesson').addEventListener('click', () => {
+  const currentLesson = window.location.pathname.split('/').pop();
+  let completedSteps = JSON.parse(localStorage.getItem('completedSteps') || '[]');
+
+  if (!completedSteps.includes(currentLesson)) {
+    completedSteps.push(currentLesson);
+    localStorage.setItem('completedSteps', JSON.stringify(completedSteps));
+    alert('✅ Lesson marked as complete!');
+  } else {
+    alert('✅ You have already marked this lesson as complete.');
+  }
+});
+</script>
+
 </body>
 </html>
 
