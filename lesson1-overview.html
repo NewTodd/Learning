@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lesson Overview</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+  <body>
+    <div class="lang-switch" style="text-align: right; margin: 1rem;">
+        <button onclick="switchLanguage('en')">English</button>
+        <button onclick="switchLanguage('kh')">ភាសាខ្មែរ</button>
+      </div>
+      <div class="theme-toggle" style="text-align: right; margin: 1rem;">
+        <button id="themeToggle" onclick="toggleTheme()">🌙</button>
+      </div>
+<section class="course-intro">
+    <h2 data-lang="en">Responsive Web Design</h2>
+    <h2 data-lang="kh" style="display: none;">ការរចនាគេហទំព័រដែលឆាប់ប្រតិបត្តិ</h2>
+  
+    <div class="icon">📱🖥️</div>
+  
+    <p data-lang="en">
+      In this course, you'll learn the basics of HTML and CSS. Later, you'll explore modern layout techniques like Flexbox, CSS Grid, and responsive design best practices.
+    </p>
+    <p data-lang="kh" style="display: none;">
+      នៅក្នុងវគ្គនេះ អ្នកនឹងរៀនមូលដ្ឋាន HTML និង CSS។ បន្ទាប់មក អ្នកនឹងស្វែងយល់អំពីបច្ចេកទេសប្លង់ទំនើបដូចជា Flexbox, CSS Grid និងវិធីល្អបំផុតសម្រាប់ការរចនាដែលឆាប់ប្រតិបត្តិ។
+    </p>
+  
+    <p class="note" data-lang="en">
+      Note: Some features may not work in older browsers. Use Chrome or Firefox for the best experience.
+    </p>
+    <p class="note" data-lang="kh" style="display: none;">
+      កំណត់សម្គាល់៖ មុខងារមួយចំនួនអាចមិនដំណើរការល្អលើកម្មវិធីរុករកចាស់ៗទេ។ សូមប្រើ Chrome ឬ Firefox សម្រាប់បទពិសោធន៍ល្អបំផុត។
+    </p>
+  </section>
+  
+  <section class="course-list">
+    <h3 data-lang="en">Courses</h3>
+    <h3 data-lang="kh" style="display: none;">វគ្គសិក្សា</h3>
+  
+    <div class="lesson-card">
+      <button class="accordion" onclick="toggleLesson(this)">
+        ▶️ <span data-lang="en">Learn HTML by Building a Cat Photo App</span>
+        <span data-lang="kh" style="display:none;">រៀន HTML ដោយបង្កើតកម្មវិធីរូបថតឆ្មា</span>
+      </button>
+      <div class="panel">
+        <p data-lang="en">
+          In this course, you’ll learn the most common HTML tags by building a fun cat photo app!
+        </p>
+        <p data-lang="kh" style="display: none;">
+          នៅក្នុងវគ្គនេះ អ្នកនឹងរៀនអំពីស្លាក HTML ទូទៅបំផុត ដោយបង្កើតកម្មវិធីរូបថតឆ្មា ដែលគួរឲ្យចាប់អារម្មណ៍!
+        </p>
+        <a href="lesson1.html" class="cta-btn" data-lang="en">Start Lesson</a>
+        <a href="lesson1.html" class="cta-btn" data-lang="kh" style="display: none;">ចាប់ផ្តើមមេរៀន</a>
+      </div>
+    </div>
+  
+    <!-- Add more lesson cards below in same format -->
+  </section>
+  <script src="script.js"></script>
+  </body>
+  

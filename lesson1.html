@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lesson 1 - Setup HTML</title>
+  <link rel="stylesheet" href="../styles.css" />
+
+  <!-- 🎉 Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <!-- 🔥 Surprise Animation Style -->
+  <style>
+    @keyframes popIn {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    #surprise {
+      display: none;
+      background: #10b981;
+      color: white;
+      padding: 2rem;
+      border-radius: 12px;
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 1.3rem;
+      animation: popIn 0.4s ease;
+    }
+
+    .next-btn {
+      margin-top: 1.5rem;
+      display: inline-block;
+      background: #2563eb;
+      color: #fff;
+      padding: 0.7rem 1.5rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Language + Theme Toggle -->
+  <div class="lang-switch" style="text-align: right; margin: 1rem;">
+    <button onclick="switchLanguage('en')">English</button>
+    <button onclick="switchLanguage('kh')">ភាសាខ្មែរ</button>
+  </div>
+  <div class="theme-toggle" style="text-align: right; margin: 1rem;">
+    <button id="themeToggle" onclick="toggleTheme()">🌙</button>
+  </div>
+
+  <main style="max-width: 1000px; margin: auto; padding: 2rem;">
+    <!-- Step Instructions -->
+    <h2 data-lang="en">Step 1: Start with the HTML Skeleton</h2>
+    <h2 data-lang="kh" style="display: none;">ឆុមំទី ឧើឆ្ភាសាខេជាមុករាជណុក HTML</h2>
+
+    <p data-lang="en">
+      Every HTML document starts with <code>&lt;!DOCTYPE html&gt;</code> and uses <code>&lt;html&gt;</code> as the root.
+      Inside it, we include a <code>&lt;head&gt;</code> and a <code>&lt;body&gt;</code>. Let’s build the skeleton of your first webpage!
+    </p>
+    <p data-lang="kh" style="display: none;">
+      HTML រាលអេកសាដទុនច្រូងឆេនព្រ <code>&lt;!DOCTYPE html&gt;</code> អាច្រូ <code>&lt;html&gt;</code> ឆ្រុងឆាងបុរកុក្ពងព្រកក្នាងលៅ <code>&lt;head&gt;</code> ច្រាក <code>&lt;body&gt;</code> កាំំិសុង់
+    </p>
+
+    <!-- Live Code Editor -->
+    <textarea id="code" rows="12" style="width: 100%; margin-top: 1rem;">
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My First Page</title>
+  </head>
+  <body>
+    <h1>Hello Cambodia!</h1>
+  </body>
+</html>
+    </textarea>
+
+    <!-- Buttons -->
+    <div style="margin-top: 1rem;">
+      <button onclick="checkCode()" class="cta-btn">✅ Check Your Code</button>
+    </div>
+
+    <!-- Live Preview -->
+    <iframe id="preview" style="width: 100%; height: 200px; margin-top: 1rem; border: 1px solid #ccc; border-radius: 6px;"></iframe>
+
+    <!-- 🎉 Surprise Quote Box -->
+    <div id="surprise">
+      <div id="quote">🎉 You did it! Keep going!</div>
+      <a href="lesson2.html" class="next-btn" data-lang="en">➡️ Next Step</a>
+      <a href="lesson2.html" class="next-btn" data-lang="kh" style="display: none;">➡️ ជំហានបន្ទាប់</a>
+    </div>
+  </main>
+
+  <!-- 🔊 Sound Effect -->
+  <audio id="successSound" src="success.mp3" preload="auto"></audio>
+
+  <!-- Scripts -->
+  <script src="../script.js"></script>
+  <script>
+    const editor = document.getElementById("code");
+    const preview = document.getElementById("preview");
+    const successSound = document.getElementById("successSound");
+
+    editor.addEventListener("input", () => {
+      preview.srcdoc = editor.value;
+    });
+
+    preview.srcdoc = editor.value;
+
+    function checkCode() {
+      const code = editor.value.trim().toLowerCase();
+      const passed =
+        code.includes("<!doctype html>") &&
+        code.includes("<html>") &&
+        code.includes("<head>") &&
+        code.includes("<body>") &&
+        code.includes("<h1>");
+
+      const enQuotes = [
+        "🎉 You did it! Keep going!",
+        "🚀 One step closer to becoming a developer!",
+        "🔥 You're on fire! Keep up the momentum!",
+        "🌱 Every great coder starts here!",
+        "💪 You’ve got this! Let’s build more!"
+      ];
+
+      const khQuotes = [
+        "🎉 អស្ចារ្យណាស់ដែលអ្នកអាចធ្វើវាបាន!",
+        "🚀 ឆុមំបាងរំន់ធ្រូងព្រាបណុក!",
+        "🔥 ទៅក្រុក្រេលុន់! ច្រាងកំះ!",
+        "🌱 ទៅដំរង់បុន់ស្រូសណុក់!",
+        "💪 ទៅបាន់សុងនាង! ច្រាងកំះ!"
+      ];
+
+      const currentLang = document.querySelector('h2[data-lang][style*="block"]')?.dataset.lang || 'en';
+      const surprise = document.getElementById("surprise");
+      const quoteEl = document.getElementById("quote");
+
+      if (passed) {
+        const quotes = currentLang === "kh" ? khQuotes : enQuotes;
+        const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+        quoteEl.innerText = randomQuote;
+        surprise.style.display = "block";
+
+        // Play sound
+        successSound.currentTime = 0;
+        successSound.play();
+
+        // 🎊 Confetti
+        confetti({
+          particleCount: 150,
+          spread: 100,
+          origin: { y: 0.6 }
+        });
+      } else {
+        alert(currentLang === 'kh'
+          ? "❌ សូមពេរមិនត្រាធ់ច្រូលំច្រូល <!DOCTYPE html>, <html>, <head> នំ <body> អជូនទារ់!"
+          : "❌ Try again. Make sure your code has <!DOCTYPE html>, <html>, <head>, and <body>."
+        );
+        surprise.style.display = "none";
+      }
+    }
+  </script>
+</body>
+</html>
+
+

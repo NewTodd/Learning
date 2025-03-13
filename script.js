@@ -33,4 +33,11 @@ function switchLanguage(lang) {
       toggleTheme();
     }
   };
+  function toggleLesson(button) {
+    const card = button.parentElement;
+    card.classList.toggle("active");
+  
+    const isOpen = card.classList.contains("active");
+    button.textContent = (isOpen ? "▼" : "▶️") + " " + button.textContent.slice(2).trim();
+  }
   
