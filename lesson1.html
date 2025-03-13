@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lesson 1 - Setup HTML</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="../styles.css" />
 
   <!-- 🎉 Canvas Confetti -->
@@ -40,6 +39,32 @@
       text-decoration: none;
       font-weight: bold;
     }
+
+    textarea {
+      background-color: #f8fafc;
+      color: #111827;
+      font-family: monospace;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 1rem;
+    }
+
+    body.dark-mode textarea {
+      background-color: #1e293b;
+      color: #f8fafc;
+      border-color: #475569;
+    }
+
+    iframe {
+      background-color: white;
+      color: black;
+    }
+
+    body.dark-mode iframe {
+      background-color: #1e293b;
+      color: white;
+    }
   </style>
 </head>
 <body>
@@ -72,13 +97,15 @@
 <html>
   <head>
     <title>My First Page</title>
+    <style>body { color: white; background: #1e293b; }</style>
   </head>
   <body>
     <h1>Hello Cambodia!</h1>
   </body>
+  
 </html>
     </textarea>
-
+    <footer>BasicCodeKh by Todd</footer>
     <!-- Buttons -->
     <div style="margin-top: 1rem;">
       <button onclick="checkCode()" class="cta-btn">✅ Check Your Code</button>

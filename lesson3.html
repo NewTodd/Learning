@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 3 - Headings in HTML</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <style>
+    #surprise {
+      display: none;
+      background: #10b981;
+      color: white;
+      padding: 2rem;
+      border-radius: 12px;
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 1.3rem;
+    }
+    .next-btn {
+      margin-top: 1.5rem;
+      display: inline-block;
+      background: #2563eb;
+      color: #fff;
+      padding: 0.7rem 1.5rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    textarea {
+      background-color: #f8fafc;
+      color: #111827;
+      font-family: monospace;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 1rem;
+    }
+    body.dark-mode textarea {
+      background-color: #1e293b;
+      color: #f8fafc;
+      border-color: #475569;
+    }
+    iframe {
+      background-color: white;
+    }
+    body.dark-mode iframe {
+      background-color: #1e293b;
+    }
+  </style>
+</head>
+<body>
+  <div class="lang-switch" style="text-align: right; margin: 1rem;">
+    <button onclick="switchLanguage('en')">English</button>
+    <button onclick="switchLanguage('kh')">ភាសាខ្មែរ</button>
+  </div>
+  <div class="theme-toggle" style="text-align: right; margin: 1rem;">
+    <button id="themeToggle" onclick="toggleTheme()">🌙</button>
+  </div>
+
+  <main style="max-width: 1000px; margin: auto; padding: 2rem;">
+    <h2 data-lang="en">Step 3: Learn HTML Headings</h2>
+    <h2 data-lang="kh" style="display: none;">ជំហានទី ៣៖ រៀនអំពីចំណងជើង (Heading)</h2>
+
+    <p data-lang="en">
+      In HTML, <code>&lt;h1&gt;</code> through <code>&lt;h6&gt;</code> are used to define headings. <code>&lt;h1&gt;</code> is the most important (largest) and <code>&lt;h6&gt;</code> is the least important (smallest).
+    </p>
+    <p data-lang="en" style="margin-top: 1rem; font-weight: bold;">
+      👉 Your task: Change the heading text between <code>&lt;h1&gt;</code> and <code>&lt;/h1&gt;</code> to your own title!
+    </p>
+
+    <p data-lang="kh" style="display: none;">
+      នៅក្នុង HTML <code>&lt;h1&gt;</code> ដល់ <code>&lt;h6&gt;</code> គឺជា tag សម្រាប់ចំណងជើង។ <code>&lt;h1&gt;</code> គឺធំបំផុត និងសំខាន់បំផុត។ <code>&lt;h6&gt;</code> គឺតូចជាងគេ។
+    </p>
+    <p data-lang="kh" style="display: none; margin-top: 1rem; font-weight: bold;">
+      👉 ភារកិច្ច៖ សូមប្តូរអត្ថបទក្នុង <code>&lt;h1&gt;</code> ទៅជាចំណងជើងរបស់អ្នក!
+    </p>
+
+    <textarea id="code" rows="8" style="width: 100%; margin-top: 1rem;">
+<h1>Hello Cambodia!</h1>
+</textarea>
+
+    <div style="margin-top: 1rem;">
+      <button onclick="checkCode()" class="cta-btn">✅ Check Your Code</button>
+    </div>
+
+    <iframe id="preview" style="width: 100%; height: 150px; margin-top: 1rem; border: 1px solid #ccc; border-radius: 6px;"></iframe>
+
+    <div id="surprise">
+      <div id="quote">🎉 Nice! Headings help organize your page.</div>
+      <a href="lesson4.html" class="next-btn" data-lang="en">➡️ Next Step</a>
+      <a href="lesson4.html" class="next-btn" data-lang="kh" style="display: none;">➡️ ជំហានបន្ទាប់</a>
+    </div>
+  </main>
+
+  <audio id="successSound" src="../sounds/success.mp3" preload="auto"></audio>
+  <script src="../script.js"></script>
+  <script>
+    const editor = document.getElementById("code");
+    const preview = document.getElementById("preview");
+    const sound = document.getElementById("successSound");
+
+    editor.addEventListener("input", () => {
+      preview.srcdoc = `<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body { color: white; background: #1e293b; }
+    </style>
+  </head>
+  <body>${editor.value}</body>
+</html>`;
+    });
+
+    preview.srcdoc = `<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body { color: white; background: #1e293b; }
+    </style>
+  </head>
+  <body>${editor.value}</body>
+</html>`;
+
+    function checkCode() {
+      const code = editor.value.trim().toLowerCase();
+      const passed = code.includes("<h1>") && code.includes("</h1>");
+
+      const enQuotes = [
+        "🎉 Nice! Headings help organize your page.",
+        "🧠 Great work using <h1> for your title!",
+        "📢 Headings make your content easy to read."
+      ];
+      const khQuotes = [
+        "🎉 ល្អណាស់! ចំណងជើងជួយរៀបចំអត្ថបទ។",
+        "🧠 អ្នកបានប្រើ <h1> ដើម្បីបង្កើតចំណងជើងរបស់អ្នក!",
+        "📢 ចំណងជើងធ្វើឲ្យមាតិកាអានបានងាយ!"
+      ];
+
+      const currentLang = document.querySelector('h2[data-lang][style*="block"]')?.dataset.lang || 'en';
+      const quoteEl = document.getElementById("quote");
+      const surprise = document.getElementById("surprise");
+
+      if (passed) {
+        const quotes = currentLang === 'kh' ? khQuotes : enQuotes;
+        quoteEl.innerText = quotes[Math.floor(Math.random() * quotes.length)];
+        surprise.style.display = "block";
+        sound.currentTime = 0;
+        sound.play();
+        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+      } else {
+        alert(currentLang === 'kh' ? "❌ សូមប្រាកដថាអ្នកប្រើ tag <h1> និង </h1>" : "❌ Make sure you use both <h1> and </h1>.");
+        surprise.style.display = "none";
+      }
+    }
+  </script>
+</body>
+</html>
