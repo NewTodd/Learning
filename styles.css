@@ -18,6 +18,8 @@
       border: none;
       background: #e5e7eb;
       border-radius: 5px;
+      min-width: 100px; /* ✅ Ensures buttons are same width */
+  height: 30px;      /* ✅ Ensures same height */
     }
     .hero {
       text-align: center;
