@@ -75,7 +75,45 @@
         min-height: 1em;
         min-width: 160px;
       }
-      
+      /* DARK MODE START */
+body.dark-mode {
+    background-color: #1e293b;
+    color: #f1f5f9;
+  }
+  
+  header.dark-mode {
+    background-color: #0f172a;
+    color: white;
+  }
+  
+  .hero.dark-mode h2,
+  .hero.dark-mode p {
+    color: #f1f5f9;
+  }
+  
+  .cta-btn.dark-mode {
+    background-color: #0ea5e9;
+    color: white;
+  }
+  
+  .feature.dark-mode {
+    background-color: #334155;
+    color: #f8fafc;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  }
+  
+  .flashcard.dark-mode {
+    background-color: #475569;
+    border-left: 6px solid #0ea5e9;
+    color: #f1f5f9;
+  }
+  
+  .lang-switch.dark-mode button {
+    background: #cbd5e1;
+    color: #1e293b;
+  }
+  /* DARK MODE END */
+  
       
     @media (max-width: 768px) {
       .features {

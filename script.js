@@ -11,4 +11,26 @@ function switchLanguage(lang) {
       }
     });
   }
+  function toggleTheme() {
+    const body = document.body;
+    const toggleTargets = document.querySelectorAll('header, .cta-btn, .feature, .flashcard');
+  
+    body.classList.toggle('dark-mode');
+  
+    toggleTargets.forEach(el => {
+      el.classList.toggle('dark-mode');
+    });
+  
+    // Save theme to localStorage
+    const currentTheme = body.classList.contains('dark-mode') ? 'dark' : 'light';
+    localStorage.setItem('theme', currentTheme);
+  }
+  
+  // Load saved theme on page load
+  window.onload = () => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      toggleTheme();
+    }
+  };
   
