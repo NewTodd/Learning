@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini Project 1 - About Me</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <style>
+    #success {
+      display: none;
+      background: #10b981;
+      color: white;
+      padding: 2rem;
+      border-radius: 12px;
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 1.3rem;
+    }
+    textarea {
+      background-color: #f8fafc;
+      color: #111827;
+      font-family: monospace;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 1rem;
+    }
+    body.dark-mode textarea {
+      background-color: #1e293b;
+      color: #f8fafc;
+      border-color: #475569;
+    }
+    iframe {
+      background-color: white;
+    }
+    body.dark-mode iframe {
+      background-color: #1e293b;
+    }
+  </style>
+</head>
+<body>
+  <div class="lang-switch" style="text-align: right; margin: 1rem;">
+    <button onclick="switchLanguage('en')">English</button>
+    <button onclick="switchLanguage('kh')">ភាសាខ្មែរ</button>
+  </div>
+  <div class="theme-toggle" style="text-align: right; margin: 1rem;">
+    <button id="themeToggle" onclick="toggleTheme()">🌙</button>
+  </div>
+
+  <main style="max-width: 1000px; margin: auto; padding: 2rem;">
+    <h2 data-lang="en">Mini Project 1: Build an About Me Page</h2>
+    <h2 data-lang="kh" style="display: none;">គម្រោងតូច ១៖ បង្កើតទំព័រ "អំពីខ្ញុំ"</h2>
+
+    <p data-lang="en">
+      Let’s put everything you’ve learned so far into one page! You will build a simple <strong>About Me</strong> webpage using the tags: <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code>, <code>&lt;body&gt;</code>, <code>&lt;h1&gt;</code>, <code>&lt;p&gt;</code>, and <code>&lt;ul&gt;</code>.
+    </p>
+    <p data-lang="kh" style="display: none;">
+      ចូរប្រើ tag HTML ដែលអ្នកបានរៀនដើម្បីបង្កើតទំព័រ <strong>អំពីខ្ញុំ</strong>។ ប្រើ <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code>, <code>&lt;body&gt;</code>, <code>&lt;h1&gt;</code>, <code>&lt;p&gt;</code>, និង <code>&lt;ul&gt;</code>។
+    </p>
+
+    <p data-lang="en" style="margin-top: 1rem; font-weight: bold;">
+      👉 Your task: Add a title using <code>&lt;h1&gt;</code>, a short paragraph about yourself using <code>&lt;p&gt;</code>, and a list of 3 hobbies using <code>&lt;ul&gt;</code>.
+    </p>
+    <p data-lang="kh" style="display: none; margin-top: 1rem; font-weight: bold;">
+      👉 ភារកិច្ច៖ សរសេរចំណងជើងជាមួយ <code>&lt;h1&gt;</code> អត្ថបទខ្លីអំពីខ្លួនអ្នកដោយប្រើ <code>&lt;p&gt;</code> និងបញ្ជីចំណង់ចំណូលចិត្ត ៣ ដោយប្រើ <code>&lt;ul&gt;</code>។
+    </p>
+
+    <textarea id="code" rows="12" style="width: 100%; margin-top: 1rem;">
+<h1>My Name is Todd</h1>
+<p>I love teaching people how to code in Khmer!</p>
+<ul>
+  <li>Reading</li>
+  <li>Design</li>
+  <li>Trading</li>
+</ul>
+    </textarea>
+
+    <div style="margin-top: 1rem;">
+      <button onclick="checkCode()" class="cta-btn">✅ Submit Project</button>
+    </div>
+
+    <iframe id="preview" style="width: 100%; height: 180px; margin-top: 1rem; border: 1px solid #ccc; border-radius: 6px;"></iframe>
+
+    <div id="success">
+      🎉 Well done! You've completed your first mini project!
+    </div>
+  </main>
+
+  <audio id="successSound" src="success.mp3" preload="auto"></audio>
+  <script src="../script.js"></script>
+  <script>
+    const editor = document.getElementById("code");
+    const preview = document.getElementById("preview");
+    const successSound = document.getElementById("successSound");
+    const successBox = document.getElementById("success");
+
+    editor.addEventListener("input", () => {
+      preview.srcdoc = `<!DOCTYPE html><html><head><style>body { background: #1e293b; color: white; }</style></head><body>${editor.value}</body></html>`;
+    });
+
+    preview.srcdoc = `<!DOCTYPE html><html><head><style>body { background: #1e293b; color: white; }</style></head><body>${editor.value}</body></html>`;
+
+    function checkCode() {
+      const code = editor.value.toLowerCase();
+      if (code.includes("<h1>") && code.includes("<p>") && code.includes("<ul>") && code.includes("<li>")) {
+        successBox.style.display = "block";
+        successSound.currentTime = 0;
+        successSound.play();
+        confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+      } else {
+        alert("❌ Make sure to include <h1>, <p>, <ul>, and <li> tags.");
+        successBox.style.display = "none";
+      }
+    }
+  </script>
+</body>
+</html>

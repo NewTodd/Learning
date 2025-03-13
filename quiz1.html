@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz 1 - HTML Basics</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <style>
+    .quiz-question {
+      margin-bottom: 2rem;
+    }
+    .question {
+      font-weight: bold;
+    }
+    .options label {
+      display: block;
+      margin: 0.5rem 0;
+    }
+    #result {
+      display: none;
+      background: #10b981;
+      color: white;
+      padding: 2rem;
+      border-radius: 12px;
+      text-align: center;
+      font-size: 1.3rem;
+      margin-top: 2rem;
+    }
+    .next-btn {
+      display: inline-block;
+      background: #2563eb;
+      color: #fff;
+      padding: 0.7rem 1.5rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="lang-switch" style="text-align: right; margin: 1rem;">
+    <button onclick="switchLanguage('en')">English</button>
+    <button onclick="switchLanguage('kh')">ភាសាខ្មែរ</button>
+  </div>
+  <div class="theme-toggle" style="text-align: right; margin: 1rem;">
+    <button id="themeToggle" onclick="toggleTheme()">🌙</button>
+  </div>
+
+  <main style="max-width: 1000px; margin: auto; padding: 2rem;">
+    <h2 data-lang="en">Quiz 1: Test Your Knowledge</h2>
+    <h2 data-lang="kh" style="display: none;">សំណួរប្រលងទី ១៖ សាកល្បងចំណេះដឹងរបស់អ្នក</h2>
+
+    <form id="quizForm">
+      <div class="quiz-question">
+        <div class="question" data-lang="en">1. What tag is used for a paragraph?</div>
+        <div class="question" data-lang="kh" style="display: none;">1. តើ tag មួយណាដែលប្រើសម្រាប់កថាខណ្ឌ?</div>
+        <div class="options">
+          <label><input type="radio" name="q1" value="correct"> &lt;p&gt;</label>
+          <label><input type="radio" name="q1" value="wrong"> &lt;h1&gt;</label>
+          <label><input type="radio" name="q1" value="wrong"> &lt;div&gt;</label>
+        </div>
+      </div>
+
+      <div class="quiz-question">
+        <div class="question" data-lang="en">2. Which tag creates a main heading?</div>
+        <div class="question" data-lang="kh" style="display: none;">2. តើ tag មួយណាបង្កើតចំណងជើងសំខាន់?</div>
+        <div class="options">
+          <label><input type="radio" name="q2" value="correct"> &lt;h1&gt;</label>
+          <label><input type="radio" name="q2" value="wrong"> &lt;p&gt;</label>
+          <label><input type="radio" name="q2" value="wrong"> &lt;a&gt;</label>
+        </div>
+      </div>
+
+      <div class="quiz-question">
+        <div class="question" data-lang="en">3. How do you start an HTML document?</div>
+        <div class="question" data-lang="kh" style="display: none;">3. តើអ្នកចាប់ផ្តើមឯកសារ HTML ដោយរបៀបណា?</div>
+        <div class="options">
+          <label><input type="radio" name="q3" value="correct"> &lt;!DOCTYPE html&gt;</label>
+          <label><input type="radio" name="q3" value="wrong"> &lt;html&gt;</label>
+          <label><input type="radio" name="q3" value="wrong"> &lt;head&gt;</label>
+        </div>
+      </div>
+
+      <div class="quiz-question">
+        <div class="question" data-lang="en">4. Which tag is used to create a list item?</div>
+        <div class="question" data-lang="kh" style="display: none;">4. តើ tag មួយណាដែលប្រើសម្រាប់ធាតុបញ្ជី?</div>
+        <div class="options">
+          <label><input type="radio" name="q4" value="correct"> &lt;li&gt;</label>
+          <label><input type="radio" name="q4" value="wrong"> &lt;ul&gt;</label>
+          <label><input type="radio" name="q4" value="wrong"> &lt;ol&gt;</label>
+        </div>
+      </div>
+
+      <button type="button" class="cta-btn" onclick="submitQuiz()">✅ Submit Answers</button>
+    </form>
+
+    <div id="result">
+      <div id="quote">🎉 Amazing! You passed the quiz!</div>
+      <a href="project1.html" class="next-btn" data-lang="en">🚀 Start Mini Project 1</a>
+      <a href="project1.html" class="next-btn" data-lang="kh" style="display: none;">🚀 ចាប់ផ្តើមគម្រោងតូច ១</a>
+    </div>
+  </main>
+
+  <audio id="successSound" src="success.mp3" preload="auto"></audio>
+  <script src="../script.js"></script>
+  <script>
+    function submitQuiz() {
+      const answers = [...document.querySelectorAll('input[type="radio"]:checked')];
+      const correct = answers.filter(ans => ans.value === "correct").length;
+
+      if (correct >= 4) {
+        document.getElementById("result").style.display = "block";
+        const sound = document.getElementById("successSound");
+        sound.currentTime = 0;
+        sound.play();
+        confetti({ particleCount: 100, spread: 80, origin: { y: 0.6 } });
+      } else {
+        alert("❌ Not quite yet! Try reviewing your lessons and try again.");
+      }
+    }
+  </script>
+</body>
+</html>
