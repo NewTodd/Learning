@@ -3,47 +3,61 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lesson 16 - &lt;main&gt; in HTML</title>
+  <title>Lesson 16 - Semantic HTML: &lt;nav&gt;</title>
   <link rel="stylesheet" href="../styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <style>
     body {
-      font-family: 'Noto Sans Khmer', sans-serif;
-      background-color: #0f172a;
-      color: #f8fafc;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 2rem;
-      min-height: 100vh;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Noto Sans Khmer', sans-serif;
+      background-color: #0f172a;
+      color: #f8fafc;
     }
     .toolbar {
       width: 100%;
       display: flex;
       justify-content: flex-end;
-      padding-bottom: 1rem;
+      padding: 0.5rem 1rem;
       gap: 1rem;
     }
     .toolbar button {
       background-color: #334155;
       color: white;
       border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      cursor: pointer;
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
       font-weight: bold;
+      cursor: pointer;
     }
-    .lesson-container {
-      background-color: #1e293b;
-      padding: 2rem;
+    .main-container {
+      display: flex;
+      flex-direction: row;
+      width: 90%;
+      max-width: 1200px;
+      height: 90vh;
       border-radius: 12px;
-      max-width: 800px;
-      width: 100%;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
     }
-    .instruction {
-      margin-bottom: 1.5rem;
+    .editor-panel {
+      width: 50%;
+      padding: 1rem;
+      background-color: #1e293b;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .instructions {
+      background-color: #334155;
+      border-radius: 8px;
+      padding: 1rem;
+      font-size: 0.95rem;
       line-height: 1.6;
     }
     textarea {
@@ -56,31 +70,30 @@
       border-radius: 6px;
       padding: 1rem;
     }
-    .btn-group {
-      margin-top: 1rem;
-    }
     .btn-group button {
       background: #2563eb;
       color: white;
-      padding: 0.5rem 1.2rem;
+      padding: 0.5rem 1rem;
       border: none;
-      border-radius: 6px;
+      border-radius: 4px;
+      margin-right: 0.5rem;
       font-weight: bold;
       cursor: pointer;
-      margin-right: 0.5rem;
+    }
+    .preview-panel {
+      width: 50%;
+      background-color: white;
+      color: black;
+      border-left: 2px solid #1e293b;
     }
     iframe {
       width: 100%;
-      height: 200px;
-      margin-top: 1rem;
+      height: 100%;
       border: none;
-      background: white;
-      color: black;
     }
     .next-step {
-      margin-top: 2rem;
+      margin-top: 1rem;
       display: none;
-      gap: 1rem;
     }
     .next-step a {
       background: #10b981;
@@ -98,34 +111,46 @@
     <button onclick="switchLanguage('kh')">ភាសាខ្មែរ</button>
     <button id="themeToggle" onclick="toggleTheme()">🌙</button>
   </div>
-  <div class="lesson-container">
-    <h2 data-lang="en">Lesson 16: The &lt;main&gt; Tag</h2>
-    <h2 data-lang="kh" style="display:none">មេរៀនទី ១៦៖ Tag &lt;main&gt;</h2>
+  <div class="main-container">
+    <div class="editor-panel">
+      <div class="instructions">
+        <h2 data-lang="en">Lesson 16: Semantic HTML - &lt;nav&gt;</h2>
+        <h2 data-lang="kh" style="display:none">មេរៀនទី ១៦៖ Tag មានអត្ថន័យ &lt;nav&gt;</h2>
 
-    <p class="instruction" data-lang="en">
-      The <code>&lt;main&gt;</code> tag represents the main content of a webpage. It should be unique and not contain sidebars, headers, or footers.
-    </p>
-    <p class="instruction" data-lang="kh" style="display:none">
-      <code>&lt;main&gt;</code> គឺជាផ្នែកសំខាន់នៃគេហទំព័រ។ វាគួរតែមានតែមួយ និងមិនមាន header, sidebar ឬ footer នៅក្នុងនោះទេ។
-    </p>
+        <h3 data-lang="en">Objectives:</h3>
+        <h3 data-lang="kh" style="display:none">គោលបំណង:</h3>
+        <ul data-lang="en">
+          <li>Learn what the &lt;nav&gt; tag is used for</li>
+          <li>Understand how it groups navigation links</li>
+          <li>Practice writing a simple nav section</li>
+        </ul>
+        <ul data-lang="kh" style="display:none">
+          <li>សិក្សាពីការប្រើ &lt;nav&gt; សម្រាប់បញ្ចប់តំណភ្ជាប់ navigation</li>
+          <li>យល់ពីការដាក់ link navigation នៅក្នុង tag &lt;nav&gt;</li>
+          <li>អនុវត្តសរសេរផ្នែក nav ងាយៗមួយ</li>
+        </ul>
 
-    <p data-lang="en"><strong>👉 Your Task:</strong> Type <code>&lt;main&gt;Welcome!&lt;/main&gt;</code> to add main content.</p>
-    <p data-lang="kh" style="display:none"><strong>👉 ភារកិច្ច:</strong> វាយ <code>&lt;main&gt;Welcome!&lt;/main&gt;</code> ដើម្បីបន្ថែមមាតិកាសំខាន់។</p>
+        <p data-lang="en"><strong>👉 Your Task:</strong> Type <code>&lt;nav&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/nav&gt;</code> below.</p>
+        <p data-lang="kh" style="display:none"><strong>👉 ភារកិច្ច:</strong> វាយ <code>&lt;nav&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/nav&gt;</code> ខាងក្រោម។</p>
 
-    <textarea id="code"></textarea>
-
-    <div class="btn-group">
-      <button onclick="checkCode()">✅ Check Your Code</button>
-      <button onclick="resetCode()">🔄 Reset</button>
+        <pre style="margin-top: 1rem; background-color: #1e293b; color: #f8fafc; padding: 1rem; border-radius: 8px;">
+<nav><a href="#">Home</a></nav>
+        </pre>
+      </div>
+      <textarea id="code"></textarea>
+      <div class="btn-group">
+        <button onclick="checkCode()">✅ Check Your Code</button>
+        <button onclick="resetCode()">🔄 Reset</button>
+      </div>
+      <div class="next-step" id="nextStep">
+        <a href="lesson15.html" data-lang="en">⬅️ Previous</a>
+        <a href="lesson15.html" data-lang="kh" style="display:none">⬅️ ជំហានមុន</a>
+        <a href="lesson17.html" data-lang="en">➡️ Next Step</a>
+        <a href="lesson17.html" data-lang="kh" style="display:none">➡️ ជំហានបន្ទាប់</a>
+      </div>
     </div>
-
-    <iframe id="preview"></iframe>
-
-    <div class="next-step" id="nextStep">
-      <a href="lesson15.html" data-lang="en">⬅️ Previous</a>
-      <a href="lesson15.html" data-lang="kh" style="display:none">⬅️ ជំហានមុន</a>
-      <a href="lesson17.html" data-lang="en">➡️ Next Step</a>
-      <a href="lesson17.html" data-lang="kh" style="display:none">➡️ ជំហានបន្ទាប់</a>
+    <div class="preview-panel">
+      <iframe id="preview"></iframe>
     </div>
   </div>
   <audio id="successSound" src="../sounds/success.mp3" preload="auto"></audio>
@@ -140,20 +165,20 @@
     editor.addEventListener("input", updatePreview);
 
     function updatePreview() {
-      preview.srcdoc = `<!DOCTYPE html><html><head><style>body{background:white;color:black;padding:1rem;}</style></head><body>${editor.value}</body></html>`;
+      preview.srcdoc = `<!DOCTYPE html><html><head><style>body{background:white;color:black;padding:1rem;} a{color:blue;}</style></head><body>${editor.value}</body></html>`;
     }
 
     function checkCode() {
       const code = editor.value.trim().toLowerCase();
       const lang = document.querySelector('[data-lang][style*="block"]')?.dataset.lang || 'en';
 
-      if (code.includes("<main>") && code.includes("</main>")) {
-        alert(lang === 'kh' ? '✅ ល្អណាស់! អ្នកបានប្រើ <main> បានត្រឹមត្រូវ។' : '✅ Great job! You used the <main> tag correctly.');
+      if (code.includes("<nav>") && code.includes("</nav>") && code.includes("<a") && code.includes("href")) {
+        alert(lang === 'kh' ? '✅ ល្អណាស់! អ្នកបានប្រើ <nav> tag ដោយត្រឹមត្រូវ។' : '✅ Great job! You used the <nav> tag correctly.');
         sound.play();
         nextStep.style.display = "flex";
         confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
       } else {
-        alert(lang === 'kh' ? '❌ សូមប្រើ <main> និង </main> tag ជាសមរម្យ។' : '❌ Make sure you use both <main> and </main> tags.');
+        alert(lang === 'kh' ? '❌ សូមប្រាកដថាអ្នកប្រើ <nav> និង <a href="#"> ដូចក្នុងគំរូ។' : '❌ Make sure you use <nav> and <a href="#"> as shown.');
         nextStep.style.display = "none";
       }
     }
@@ -162,6 +187,12 @@
       editor.value = defaultCode;
       updatePreview();
       nextStep.style.display = "none";
+    }
+
+    function switchLanguage(lang) {
+      document.querySelectorAll('[data-lang]').forEach(el => {
+        el.style.display = el.getAttribute('data-lang') === lang ? 'block' : 'none';
+      });
     }
 
     updatePreview();

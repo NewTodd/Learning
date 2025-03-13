@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lesson 3 - Paragraphs in HTML</title>
+  <title>Lesson 3 - HTML Paragraphs</title>
   <link rel="stylesheet" href="../styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -93,8 +93,7 @@
     }
     .next-step {
       margin-top: 1rem;
-      display: flex;
-      gap: 1rem;
+      display: none;
     }
     .next-step a {
       background: #10b981;
@@ -104,27 +103,41 @@
       font-weight: bold;
       text-decoration: none;
     }
-    #nextLink,
-    #nextLinkKh {
-      display: none;
-    }
   </style>
 </head>
 <body>
   <div class="toolbar">
     <button onclick="switchLanguage('en')">English</button>
     <button onclick="switchLanguage('kh')">ភាសាខ្មែរ</button>
-    <button id="themeToggle" onclick="toggleTheme()">🌙</button>
   </div>
   <div class="main-container">
     <div class="editor-panel">
       <div class="instructions">
+        <h2 data-lang="en">Lesson 3: Paragraphs in HTML</h2>
+        <h2 data-lang="kh" style="display: none;">មេរៀនទី ៣៖ បញ្ចីកថា (Paragraphs) ក្នុង HTML</h2>
+
+        <h3 data-lang="en">Objectives:</h3>
+        <h3 data-lang="kh" style="display:none;">គោលបំណង:</h3>
+        <ul data-lang="en">
+          <li>Learn how to use the &lt;p&gt; tag in HTML</li>
+          <li>Understand how to write paragraphs of text</li>
+          <li>Practice writing your own paragraph</li>
+        </ul>
+        <ul data-lang="kh" style="display:none;">
+          <li>សិក្សាពីរបៀបប្រើស្លាក &lt;p&gt; ក្នុង HTML</li>
+          <li>យល់ពីវិធីសរសេរបញ្ចីកថា</li>
+          <li>អនុវត្តន៍ការសរសេរខ្លឹមសារ</li>
+        </ul>
+
         <h3 data-lang="en">Step 3 ✅</h3>
         <h3 data-lang="kh" style="display: none;">ជំហានទី ៣ ✅</h3>
-        <p data-lang="en">In HTML, the <code>&lt;p&gt;</code> tag is used to define paragraphs of text. Paragraphs make content easier to read and understand.</p>
-        <p data-lang="kh" style="display: none;">នៅក្នុង HTML tag <code>&lt;p&gt;</code> ត្រូវបានប្រើសម្រាប់កំណត់ខណ្ឌអត្ថបទ។ វាជួយឲ្យមាតិកាមានភាពងាយស្រួលក្នុងការអាន និងយល់។</p>
-        <p data-lang="en"><strong>👉 Your Task:</strong> Type <code>&lt;p&gt;Hello&lt;/p&gt;</code> in the box below to test your understanding of paragraphs.</p>
-        <p data-lang="kh" style="display: none;"><strong>👉 ភារកិច្ច:</strong> វាយ <code>&lt;p&gt;Hello&lt;/p&gt;</code> ខាងក្រោម ដើម្បីសាកល្បងការយល់ដឹងរបស់អ្នកអំពីខណ្ឌអត្ថបទ។</p>
+        <p data-lang="en">The &lt;p&gt; tag defines a paragraph. It automatically adds spacing before and after the text.</p>
+        <p data-lang="kh" style="display: none;">ស្លាក &lt;p&gt; កំណត់បញ្ចីកថា។ វាបន្ថែមចន្លោះសម្រាប់អត្ថបទដោយស្វ័យប្រវត្តិ។</p>
+        <p data-lang="en"><strong>👉 Your Task:</strong> Type a sentence wrapped in a &lt;p&gt; tag.</p>
+        <p data-lang="kh" style="display: none;"><strong>👉 ភារកិច្ច:</strong> សរសេរចំណងជើងក្នុងស្លាក &lt;p&gt;។</p>
+        <pre style="margin-top: 1rem; background-color: #1e293b; color: #f8fafc; padding: 1rem; border-radius: 8px;">
+<p>Hello, I am learning HTML on BasicCodeKh.org!</p>
+        </pre>
       </div>
       <textarea id="code"></textarea>
       <div class="btn-group">
@@ -132,10 +145,8 @@
         <button onclick="resetCode()">🔄 Reset</button>
       </div>
       <div class="next-step" id="nextStep">
-        <a href="lesson2.html" data-lang="en">⬅️ Previous</a>
-        <a href="lesson2.html" data-lang="kh" style="display: none;">⬅️ ជំហានមុន</a>
-        <a href="lesson4.html" data-lang="en" id="nextLink">➡️ Next Step</a>
-        <a href="lesson4.html" data-lang="kh" id="nextLinkKh">➡️ ជំហានបន្ទាប់</a>
+        <a href="lesson4.html" data-lang="en">➡️ Next Step</a>
+        <a href="lesson4.html" data-lang="kh" style="display: none;">➡️ ជំហានបន្ទាប់</a>
       </div>
     </div>
     <div class="preview-panel">
@@ -144,52 +155,50 @@
   </div>
 
   <audio id="successSound" src="success.mp3" preload="auto"></audio>
-  <script src="../script.js"></script>
   <script>
     const editor = document.getElementById("code");
     const preview = document.getElementById("preview");
     const sound = document.getElementById("successSound");
-    const nextLink = document.getElementById("nextLink");
-    const nextLinkKh = document.getElementById("nextLinkKh");
-
+    const nextStep = document.getElementById("nextStep");
     const defaultCode = "";
 
     editor.addEventListener("input", updatePreview);
-
-    window.addEventListener("load", () => {
-      editor.focus();
-    });
+    window.addEventListener("load", () => editor.focus());
 
     function updatePreview() {
       preview.srcdoc = `<!DOCTYPE html><html><head><style>body{background:white;color:black;padding:1rem;}</style></head><body>${editor.value}</body></html>`;
     }
 
     function checkCode() {
-      const code = editor.value.trim().toLowerCase();
+      const code = editor.value.toLowerCase();
       const currentLang = document.querySelector('[data-lang][style*="block"]')?.dataset.lang || 'en';
+      const hasParagraph = /<p>.*<\/p>/.test(code);
 
-      if (code.includes("<p>") && code.includes("</p>")) {
+      if (hasParagraph) {
         alert(currentLang === "kh"
-          ? "✅ អ្នកបានប្រើ tag <p> ដោយត្រឹមត្រូវ។"
+          ? "✅ អ្នកបានប្រើស្លាក <p> ដោយត្រឹមត្រូវ។"
           : "✅ Great job! You used the <p> tag correctly.");
         sound.play();
-        nextLink.style.display = "inline-block";
-        nextLinkKh.style.display = "inline-block";
+        nextStep.style.display = "block";
         confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
       } else {
         alert(currentLang === "kh"
-          ? "❌ សូមប្រើ tag <p> និង </p> ដើម្បីបញ្ចប់។"
-          : "❌ Try again. Use both <p> and </p> tags.");
-        nextLink.style.display = "none";
-        nextLinkKh.style.display = "none";
+          ? "❌ សូមបញ្ចូលស្លាក <p> ក្នុងកូដ។"
+          : "❌ Try again. Use a <p> tag in your code.");
+        nextStep.style.display = "none";
       }
     }
 
     function resetCode() {
       editor.value = defaultCode;
       updatePreview();
-      nextLink.style.display = "none";
-      nextLinkKh.style.display = "none";
+      nextStep.style.display = "none";
+    }
+
+    function switchLanguage(lang) {
+      document.querySelectorAll('[data-lang]').forEach(el => {
+        el.style.display = el.getAttribute('data-lang') === lang ? 'block' : 'none';
+      });
     }
 
     updatePreview();

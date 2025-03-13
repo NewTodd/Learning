@@ -118,12 +118,31 @@
   <div class="main-container">
     <div class="editor-panel">
       <div class="instructions">
+        <h2 data-lang="en">Lesson 10: HTML Comments</h2>
+        <h2 data-lang="kh" style="display: none;">មេរៀនទី ១០៖ កំណត់ចំណាំក្នុង HTML</h2>
+
+        <h3 data-lang="en">Objectives:</h3>
+        <h3 data-lang="kh" style="display:none;">គោលបំណង:</h3>
+        <ul data-lang="en">
+          <li>Understand the purpose of HTML comments</li>
+          <li>Learn how to write a comment in your code</li>
+          <li>Practice using a comment tag in HTML</li>
+        </ul>
+        <ul data-lang="kh" style="display:none;">
+          <li>យល់ពីគោលបំណងនៃកំណត់ចំណាំក្នុង HTML</li>
+          <li>សិក្សាពីរបៀបសរសេរកំណត់ចំណាំក្នុងកូដ</li>
+          <li>អនុវត្តការប្រើស្លាក comment ក្នុង HTML</li>
+        </ul>
+
         <h3 data-lang="en">Step 10 ✅</h3>
         <h3 data-lang="kh" style="display: none;">ជំហានទី ១០ ✅</h3>
         <p data-lang="en">Use <code>&lt;!-- comment --&gt;</code> to write comments in HTML. Comments are not displayed in the browser.</p>
         <p data-lang="kh" style="display: none;">ប្រើ <code>&lt;!-- comment --&gt;</code> ដើម្បីសរសេរកំណត់ចំណាំក្នុង HTML។ កំណត់ចំណាំមិនត្រូវបានបង្ហាញនៅក្នុង browser ទេ។</p>
         <p data-lang="en"><strong>👉 Your Task:</strong> Type <code>&lt;!-- This is a comment --&gt;</code> below.</p>
         <p data-lang="kh" style="display: none;"><strong>👉 ភារកិច្ច:</strong> វាយ <code>&lt;!-- This is a comment --&gt;</code> ខាងក្រោម។</p>
+        <pre style="margin-top: 1rem; background-color: #1e293b; color: #f8fafc; padding: 1rem; border-radius: 8px;">
+<!-- This is a comment -->
+        </pre>
       </div>
       <textarea id="code"></textarea>
       <div class="btn-group">
@@ -143,7 +162,6 @@
   </div>
 
   <audio id="successSound" src="success.mp3" preload="auto"></audio>
-  <script src="../script.js"></script>
   <script>
     const editor = document.getElementById("code");
     const preview = document.getElementById("preview");
@@ -154,7 +172,6 @@
     const defaultCode = "";
 
     editor.addEventListener("input", updatePreview);
-
     window.addEventListener("load", () => {
       editor.focus();
     });
@@ -196,7 +213,14 @@
       nextLinkKh.style.display = "none";
     }
 
+    function switchLanguage(lang) {
+      document.querySelectorAll('[data-lang]').forEach(el => {
+        el.style.display = el.getAttribute('data-lang') === lang ? 'block' : 'none';
+      });
+    }
+
     updatePreview();
   </script>
 </body>
 </html>
+

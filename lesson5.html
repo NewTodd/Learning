@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lesson 5 - Image Tag in HTML</title>
+  <title>Lesson 5 - HTML Image Tag</title>
   <link rel="stylesheet" href="../styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -93,8 +93,7 @@
     }
     .next-step {
       margin-top: 1rem;
-      display: flex;
-      gap: 1rem;
+      display: none;
     }
     .next-step a {
       background: #10b981;
@@ -104,27 +103,41 @@
       font-weight: bold;
       text-decoration: none;
     }
-    #nextLink,
-    #nextLinkKh {
-      display: none;
-    }
   </style>
 </head>
 <body>
   <div class="toolbar">
     <button onclick="switchLanguage('en')">English</button>
     <button onclick="switchLanguage('kh')">ភាសាខ្មែរ</button>
-    <button id="themeToggle" onclick="toggleTheme()">🌙</button>
   </div>
   <div class="main-container">
     <div class="editor-panel">
       <div class="instructions">
+        <h2 data-lang="en">Lesson 5: Images in HTML</h2>
+        <h2 data-lang="kh" style="display: none;">មេរៀនទី ៥៖ រូបភាពក្នុង HTML</h2>
+
+        <h3 data-lang="en">Objectives:</h3>
+        <h3 data-lang="kh" style="display:none;">គោលបំណង:</h3>
+        <ul data-lang="en">
+          <li>Learn how to use the &lt;img&gt; tag</li>
+          <li>Understand the use of src and alt attributes</li>
+          <li>Practice inserting an image into a page</li>
+        </ul>
+        <ul data-lang="kh" style="display:none;">
+          <li>សិក្សាអំពីការប្រើស្លាក &lt;img&gt;</li>
+          <li>យល់ពីការប្រើអាទ្រង់ស្រង់ src និង alt</li>
+          <li>អនុវត្តបញ្ចូលរូបភាពទៅក្នុងទំព័រ</li>
+        </ul>
+
         <h3 data-lang="en">Step 5 ✅</h3>
         <h3 data-lang="kh" style="display: none;">ជំហានទី ៥ ✅</h3>
-        <p data-lang="en">In HTML, the <code>&lt;img&gt;</code> tag is used to display an image. It must include a <code>src</code> attribute that tells the browser where to find the image.</p>
-        <p data-lang="kh" style="display: none;">នៅក្នុង HTML tag <code>&lt;img&gt;</code> ត្រូវបានប្រើសម្រាប់បង្ហាញរូបភាព។ វាត្រូវតែមាន attribute <code>src</code> ដើម្បីប្រាប់កម្រិតទីតាំងរូបភាព។</p>
-        <p data-lang="en"><strong>👉 Your Task:</strong> Type <code>&lt;img src="cat.jpg"&gt;</code> in the box below to test your understanding of image tags.</p>
-        <p data-lang="kh" style="display: none;"><strong>👉 ភារកិច្ច:</strong> វាយ <code>&lt;img src="cat.jpg"&gt;</code> ខាងក្រោម ដើម្បីសាកល្បងការយល់ដឹងរបស់អ្នកអំពីរូបភាព។</p>
+        <p data-lang="en">Use the &lt;img&gt; tag to insert an image. Make sure to include the <code>src</code> and <code>alt</code> attributes.</p>
+        <p data-lang="kh" style="display: none;">ប្រើស្លាក &lt;img&gt; ដើម្បីបញ្ចូលរូបភាព។ កុំភ្លេចបញ្ចូល <code>src</code> និង <code>alt</code>។</p>
+        <p data-lang="en"><strong>👉 Your Task:</strong> Add an image from a URL using the &lt;img&gt; tag.</p>
+        <p data-lang="kh" style="display: none;"><strong>👉 ភារកិច្ច:</strong> បញ្ចូលរូបភាពពី URL ដោយប្រើស្លាក &lt;img&gt;។</p>
+        <pre style="margin-top: 1rem; background-color: #1e293b; color: #f8fafc; padding: 1rem; border-radius: 8px;">
+<img src="https://via.placeholder.com/150" alt="Sample Image">
+        </pre>
       </div>
       <textarea id="code"></textarea>
       <div class="btn-group">
@@ -132,10 +145,8 @@
         <button onclick="resetCode()">🔄 Reset</button>
       </div>
       <div class="next-step" id="nextStep">
-        <a href="lesson4.html" data-lang="en">⬅️ Previous</a>
-        <a href="lesson4.html" data-lang="kh" style="display: none;">⬅️ ជំហានមុន</a>
-        <a href="lesson6.html" data-lang="en" id="nextLink">➡️ Next Step</a>
-        <a href="lesson6.html" data-lang="kh" id="nextLinkKh" style="display: none;">➡️ ជំហានបន្ទាប់</a>
+        <a href="lesson6.html" data-lang="en">➡️ Next Step</a>
+        <a href="lesson6.html" data-lang="kh" style="display: none;">➡️ ជំហានបន្ទាប់</a>
       </div>
     </div>
     <div class="preview-panel">
@@ -144,61 +155,55 @@
   </div>
 
   <audio id="successSound" src="success.mp3" preload="auto"></audio>
-  <script src="../script.js"></script>
   <script>
     const editor = document.getElementById("code");
     const preview = document.getElementById("preview");
     const sound = document.getElementById("successSound");
-    const nextLink = document.getElementById("nextLink");
-    const nextLinkKh = document.getElementById("nextLinkKh");
-
+    const nextStep = document.getElementById("nextStep");
     const defaultCode = "";
 
     editor.addEventListener("input", updatePreview);
-
-    window.addEventListener("load", () => {
-      editor.focus();
-    });
+    window.addEventListener("load", () => editor.focus());
 
     function updatePreview() {
       preview.srcdoc = `<!DOCTYPE html><html><head><style>body{background:white;color:black;padding:1rem;}</style></head><body>${editor.value}</body></html>`;
     }
 
     function checkCode() {
-      const code = editor.value.trim().toLowerCase();
+      const code = editor.value.toLowerCase();
       const currentLang = document.querySelector('[data-lang][style*="block"]')?.dataset.lang || 'en';
+      const hasImg = /<img\s+[^>]*src=['"]?[^'">\s]+['"]?[^>]*>/.test(code);
 
-      if (code.includes("<img") && code.includes("src")) {
+      if (hasImg) {
         alert(currentLang === "kh"
-          ? "✅ អ្នកបានប្រើ tag <img> ដោយត្រឹមត្រូវ។"
-          : "✅ Great job! You used the <img> tag correctly.");
+          ? "✅ អ្នកបានបញ្ចូលរូបភាពដោយប្រើស្លាក <img> ដោយត្រឹមត្រូវ។"
+          : "✅ Great job! You added an image using the <img> tag correctly.");
         sound.play();
-        if (currentLang === 'kh') {
-          nextLinkKh.style.display = "inline-block";
-          nextLink.style.display = "none";
-        } else {
-          nextLink.style.display = "inline-block";
-          nextLinkKh.style.display = "none";
-        }
+        nextStep.style.display = "block";
         confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
       } else {
         alert(currentLang === "kh"
-          ? "❌ សូមប្រើ tag <img> និង src ដើម្បីបញ្ចប់។"
-          : "❌ Try again. Use the <img> tag with a src attribute.");
-        nextLink.style.display = "none";
-        nextLinkKh.style.display = "none";
+          ? "❌ សូមប្រើស្លាក <img> ដើម្បីបញ្ចូលរូបភាព។"
+          : "❌ Try again. Use the <img> tag to add an image.");
+        nextStep.style.display = "none";
       }
     }
 
     function resetCode() {
       editor.value = defaultCode;
       updatePreview();
-      nextLink.style.display = "none";
-      nextLinkKh.style.display = "none";
+      nextStep.style.display = "none";
+    }
+
+    function switchLanguage(lang) {
+      document.querySelectorAll('[data-lang]').forEach(el => {
+        el.style.display = el.getAttribute('data-lang') === lang ? 'block' : 'none';
+      });
     }
 
     updatePreview();
   </script>
 </body>
 </html>
+
 

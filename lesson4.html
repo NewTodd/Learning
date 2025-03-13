@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lesson 4 - Line Breaks in HTML</title>
+  <title>Lesson 4 - HTML Line Breaks</title>
   <link rel="stylesheet" href="../styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -114,23 +114,41 @@
   <div class="main-container">
     <div class="editor-panel">
       <div class="instructions">
+        <h2 data-lang="en">Lesson 4: Line Breaks in HTML</h2>
+        <h2 data-lang="kh" style="display: none;">មេរៀនទី ៤៖ បំបែកបន្ទាត់ក្នុង HTML</h2>
+
+        <h3 data-lang="en">Objectives:</h3>
+        <h3 data-lang="kh" style="display:none;">គោលបំណង:</h3>
+        <ul data-lang="en">
+          <li>Learn how to use the &lt;br&gt; tag</li>
+          <li>Understand how line breaks affect text flow</li>
+          <li>Practice breaking lines inside a paragraph</li>
+        </ul>
+        <ul data-lang="kh" style="display:none;">
+          <li>សិក្សាអំពីការប្រើស្លាក &lt;br&gt;</li>
+          <li>យល់ពីរបៀបបំបែកបន្ទាត់អត្ថបទ</li>
+          <li>អនុវត្តន៍បំបែកបន្ទាត់នៅក្នុងបញ្ចីកថា</li>
+        </ul>
+
         <h3 data-lang="en">Step 4 ✅</h3>
         <h3 data-lang="kh" style="display: none;">ជំហានទី ៤ ✅</h3>
-        <p data-lang="en">Use the <code>&lt;br&gt;</code> tag to break a line in HTML without starting a new paragraph.</p>
-        <p data-lang="kh" style="display: none;">ប្រើ tag <code>&lt;br&gt;</code> ដើម្បីបំបែកបន្ទាត់នៅក្នុង HTML ដោយមិនចាំបាច់ចាប់ផ្តើម paragraph ថ្មី។</p>
-        <p data-lang="en"><strong>👉 Your Task:</strong> Type <code>Hello&lt;br&gt;World!</code> below to test line breaks.</p>
-        <p data-lang="kh" style="display: none;"><strong>👉 ភារកិច្ច:</strong> វាយ <code>Hello&lt;br&gt;World!</code> ខាងក្រោម ដើម្បីសាកល្បងការបំបែកបន្ទាត់។</p>
+        <p data-lang="en">The &lt;br&gt; tag inserts a line break in your text without starting a new paragraph.</p>
+        <p data-lang="kh" style="display: none;">ស្លាក &lt;br&gt; បន្ថែមបន្ទាត់ថ្មីក្នុងអត្ថបទដោយមិនចាប់ផ្តើមបញ្ចីកថាថ្មី។</p>
+        <p data-lang="en"><strong>👉 Your Task:</strong> Write two sentences with a &lt;br&gt; between them.</p>
+        <p data-lang="kh" style="display: none;"><strong>👉 ភារកិច្ច:</strong> សរសេរសាំងតែនពីរដោយដាក់ &lt;br&gt; រវាងពួកវា។</p>
+        <pre style="margin-top: 1rem; background-color: #1e293b; color: #f8fafc; padding: 1rem; border-radius: 8px;">
+<p>This is the first sentence.<br>This is the second sentence.</p>
+        </pre>
       </div>
       <textarea id="code"></textarea>
       <div class="btn-group">
         <button onclick="checkCode()">✅ Check Your Code</button>
         <button onclick="resetCode()">🔄 Reset</button>
+
       </div>
       <div class="next-step" id="nextStep">
-        <a href="lesson3.html" data-lang="en">⬅️ Previous</a>
-        <a href="lesson3.html" data-lang="kh" style="display: none;">⬅️ ជំហានមុន</a>
-        <a href="lesson5.html" data-lang="en" id="nextLink">➡️ Next Step</a>
-        <a href="lesson5.html" data-lang="kh" id="nextLinkKh" style="display: none;">➡️ ជំហានបន្ទាប់</a>
+        <a href="lesson5.html" data-lang="en">➡️ Next Step</a>
+        <a href="lesson5.html" data-lang="kh" style="display: none;">➡️ ជំហានបន្ទាប់</a>
       </div>
     </div>
     <div class="preview-panel">
@@ -138,62 +156,56 @@
     </div>
   </div>
 
-  <audio id="successSound" src="/success.mp3" preload="auto"></audio>
-  <script src="../script.js"></script>
+  <audio id="successSound" src="success.mp3" preload="auto"></audio>
   <script>
     const editor = document.getElementById("code");
     const preview = document.getElementById("preview");
     const sound = document.getElementById("successSound");
-    const nextLink = document.getElementById("nextLink");
-    const nextLinkKh = document.getElementById("nextLinkKh");
-
+    const nextStep = document.getElementById("nextStep");
     const defaultCode = "";
 
     editor.addEventListener("input", updatePreview);
-
-    window.addEventListener("load", () => {
-      editor.focus();
-    });
+    window.addEventListener("load", () => editor.focus());
 
     function updatePreview() {
       preview.srcdoc = `<!DOCTYPE html><html><head><style>body{background:white;color:black;padding:1rem;}</style></head><body>${editor.value}</body></html>`;
     }
 
     function checkCode() {
-      const code = editor.value.trim().toLowerCase();
+      const code = editor.value.toLowerCase();
       const currentLang = document.querySelector('[data-lang][style*="block"]')?.dataset.lang || 'en';
+      const hasBreak = /<br\s*\/?>/.test(code);
 
-      if (code.includes("hello") && code.includes("<br>") && code.includes("world")) {
+      if (hasBreak) {
         alert(currentLang === "kh"
-          ? "✅ អ្នកបានប្រើ tag <br> ដោយត្រឹមត្រូវ។"
+          ? "✅ អ្នកបានប្រើស្លាក <br> ដោយត្រឹមត្រូវ។"
           : "✅ Great job! You used the <br> tag correctly.");
         sound.play();
-        if (currentLang === 'kh') {
-          nextLinkKh.style.display = "inline-block";
-          nextLink.style.display = "none";
-        } else {
-          nextLink.style.display = "inline-block";
-          nextLinkKh.style.display = "none";
-        }
+        nextStep.style.display = "block";
         confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
       } else {
         alert(currentLang === "kh"
-          ? "❌ សូមប្រើ tag <br> និង Hello<br>World! ដូចឧទាហរណ៍។"
-          : "❌ Try again. Use <br> with Hello<br>World! as shown in the example.");
-        nextLink.style.display = "none";
-        nextLinkKh.style.display = "none";
+          ? "❌ សូមប្រើស្លាក <br> ក្នុងកូដរបស់អ្នក។"
+          : "❌ Try again. Use the <br> tag to break the line.");
+        nextStep.style.display = "none";
       }
     }
 
     function resetCode() {
       editor.value = defaultCode;
       updatePreview();
-      nextLink.style.display = "none";
-      nextLinkKh.style.display = "none";
+      nextStep.style.display = "none";
+    }
+
+    function switchLanguage(lang) {
+      document.querySelectorAll('[data-lang]').forEach(el => {
+        el.style.display = el.getAttribute('data-lang') === lang ? 'block' : 'none';
+      });
     }
 
     updatePreview();
   </script>
 </body>
 </html>
+
 

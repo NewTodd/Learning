@@ -9,46 +9,60 @@
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <style>
     body {
-      font-family: 'Noto Sans Khmer', sans-serif;
-      background-color: #0f172a;
-      color: #f8fafc;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 2rem;
-      min-height: 100vh;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Noto Sans Khmer', sans-serif;
+      background-color: #0f172a;
+      color: #f8fafc;
     }
     .toolbar {
       width: 100%;
       display: flex;
       justify-content: flex-end;
-      padding-bottom: 1rem;
+      padding: 0.5rem 1rem;
       gap: 1rem;
     }
     .toolbar button {
       background-color: #334155;
       color: white;
       border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      cursor: pointer;
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
       font-weight: bold;
+      cursor: pointer;
     }
-    .lesson-container {
-      background-color: #1e293b;
-      padding: 2rem;
+    .main-container {
+      display: flex;
+      flex-direction: row;
+      width: 90%;
+      max-width: 1200px;
+      height: 90vh;
       border-radius: 12px;
-      max-width: 800px;
-      width: 100%;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
     }
-    .instruction {
-      margin-bottom: 1.5rem;
+    .editor-panel {
+      width: 50%;
+      padding: 1rem;
+      background-color: #1e293b;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .instructions {
+      background-color: #334155;
+      border-radius: 8px;
+      padding: 1rem;
+      font-size: 0.95rem;
       line-height: 1.6;
     }
     textarea {
       width: 100%;
-      height: 100px;
+      height: 80px;
       font-family: monospace;
       background-color: #0f172a;
       color: #f8fafc;
@@ -56,29 +70,29 @@
       border-radius: 6px;
       padding: 1rem;
     }
-    .btn-group {
-      margin-top: 1rem;
-    }
     .btn-group button {
       background: #2563eb;
       color: white;
-      padding: 0.5rem 1.2rem;
+      padding: 0.5rem 1rem;
       border: none;
-      border-radius: 6px;
+      border-radius: 4px;
+      margin-right: 0.5rem;
       font-weight: bold;
       cursor: pointer;
-      margin-right: 0.5rem;
+    }
+    .preview-panel {
+      width: 50%;
+      background-color: white;
+      color: black;
+      border-left: 2px solid #1e293b;
     }
     iframe {
       width: 100%;
-      height: 200px;
-      margin-top: 1rem;
+      height: 100%;
       border: none;
-      background: white;
-      color: black;
     }
     .next-step {
-      margin-top: 2rem;
+      margin-top: 1rem;
       display: none;
     }
     .next-step a {
@@ -88,47 +102,60 @@
       border-radius: 8px;
       font-weight: bold;
       text-decoration: none;
-      margin-right: 1rem;
     }
   </style>
 </head>
 <body>
   <div class="toolbar">
     <button onclick="switchLanguage('en')">English</button>
-    <button onclick="switchLanguage('kh')">ភាសាខមែរ</button>
+    <button onclick="switchLanguage('kh')">ភាសាខ្មែរ</button>
     <button id="themeToggle" onclick="toggleTheme()">🌙</button>
   </div>
-  <div class="lesson-container">
-    <h2 data-lang="en">Lesson 14: HTML Form Tag</h2>
-    <h2 data-lang="kh" style="display:none">មេរៀនទី ១៤៖ Tag <code>&lt;form&gt;</code> ក្នុង HTML</h2>
+  <div class="main-container">
+    <div class="editor-panel">
+      <div class="instructions">
+        <h2 data-lang="en">Lesson 14: HTML Forms</h2>
+        <h2 data-lang="kh" style="display:none">មេរៀនទី ១៤៖ បែបបទក្នុង HTML</h2>
 
-    <p class="instruction" data-lang="en">
-      The <code>&lt;form&gt;</code> tag is used to group input fields and buttons together. It is useful when submitting user data to a server.
-    </p>
-    <p class="instruction" data-lang="kh" style="display:none">
-      Tag <code>&lt;form&gt;</code> គឺសំរាប់ជាកន្លែងបូកបញ្ចូល input និងប៊ូតុងជាក្រុម។ វាអាចប្រើនៅពេលអ្នកចង់ផ្ញើទិន្នន័យទៅកាន់ម៉ាស៊ីនមេ។
-    </p>
+        <h3 data-lang="en">Objectives:</h3>
+        <h3 data-lang="kh" style="display:none">គោលបំណង:</h3>
+        <ul data-lang="en">
+          <li>Learn how to use the &lt;form&gt; tag</li>
+          <li>Understand nesting inputs and buttons inside forms</li>
+          <li>Practice creating a simple form</li>
+        </ul>
+        <ul data-lang="kh" style="display:none">
+          <li>សិក្សាពីរបៀបប្រើ tag &lt;form&gt;</li>
+          <li>យល់ពីការដាក់ input និង button នៅក្នុងបែបបទ</li>
+          <li>អនុវត្តបង្កើតបែបបទសាមញ្ញមួយ</li>
+        </ul>
 
-    <p data-lang="en"><strong>👉 Your Task:</strong> Type <code>&lt;form&gt;&lt;input type="text" /&gt;&lt;button&gt;Submit&lt;/button&gt;&lt;/form&gt;</code></p>
-    <p data-lang="kh" style="display:none"><strong>👉 ភារកិច្ច:</strong> វាយ <code>&lt;form&gt;&lt;input type="text" /&gt;&lt;button&gt;Submit&lt;/button&gt;&lt;/form&gt;</code></p>
+        <p data-lang="en"><strong>👉 Your Task:</strong> Type a form with an input and button like this:</p>
+        <p data-lang="kh" style="display:none"><strong>👉 ភារកិច្ច:</strong> វាយបែបបទដែលមាន input និង button ដូចខាងក្រោម:</p>
 
-    <textarea id="code"></textarea>
-
-    <div class="btn-group">
-      <button onclick="checkCode()">✅ Check Your Code</button>
-      <button onclick="resetCode()">🔄 Reset</button>
+        <pre style="margin-top: 1rem; background-color: #1e293b; color: #f8fafc; padding: 1rem; border-radius: 8px;">
+<form>
+  <input type="text" placeholder="Your name">
+  <button>Submit</button>
+</form>
+        </pre>
+      </div>
+      <textarea id="code"></textarea>
+      <div class="btn-group">
+        <button onclick="checkCode()">✅ Check Your Code</button>
+        <button onclick="resetCode()">🔄 Reset</button>
+      </div>
+      <div class="next-step" id="nextStep">
+        <a href="lesson13.html" data-lang="en">⬅️ Previous</a>
+        <a href="lesson13.html" data-lang="kh" style="display:none">⬅️ ជំហានមុន</a>
+        <a href="lesson15.html" data-lang="en">➡️ Next Step</a>
+        <a href="lesson15.html" data-lang="kh" style="display:none">➡️ ជំហានបន្ទាប់</a>
+      </div>
     </div>
-
-    <iframe id="preview"></iframe>
-
-    <div class="next-step" id="nextStep">
-      <a href="lesson13.html" data-lang="en">⬅️ Previous</a>
-      <a href="lesson13.html" data-lang="kh" style="display:none">⬅️ ជំហានមុន</a>
-      <a href="lesson15.html" data-lang="en">➡️ Next Step</a>
-      <a href="lesson15.html" data-lang="kh" style="display:none">➡️ ជំហានបន្ទាប់</a>
+    <div class="preview-panel">
+      <iframe id="preview"></iframe>
     </div>
   </div>
-
   <audio id="successSound" src="../sounds/success.mp3" preload="auto"></audio>
   <script src="../script.js"></script>
   <script>
@@ -147,19 +174,14 @@
     function checkCode() {
       const code = editor.value.trim().toLowerCase();
       const lang = document.querySelector('[data-lang][style*="block"]')?.dataset.lang || 'en';
-      const passed = code.includes("<form") && code.includes("<input") && code.includes("<button") && code.includes("</form>");
 
-      if (passed) {
-        alert(lang === 'kh'
-          ? '✅ អ្នកបានប្រើ tag <form> បានត្រឹមត្រូវ។'
-          : '✅ Great job! You used the <form> tag correctly.');
+      if (code.includes("<form") && code.includes("<input") && code.includes("<button")) {
+        alert(lang === 'kh' ? '✅ អ្នកបានបង្កើតបែបបទបានត្រឹមត្រូវ។' : '✅ Great job! You created a form correctly.');
         sound.play();
         nextStep.style.display = "flex";
         confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
       } else {
-        alert(lang === 'kh'
-          ? '❌ សូមប្រាកដថាអ្នកបានប្រើ <form>, <input> និង <button> tag។'
-          : '❌ Make sure you include <form>, <input>, and <button> tags.');
+        alert(lang === 'kh' ? '❌ សូមប្រើ &lt;form&gt; មាន &lt;input&gt; និង &lt;button&gt; នៅខាងក្នុង។' : '❌ Try again. Use a <form> with <input> and <button> inside.');
         nextStep.style.display = "none";
       }
     }
@@ -168,6 +190,12 @@
       editor.value = defaultCode;
       updatePreview();
       nextStep.style.display = "none";
+    }
+
+    function switchLanguage(lang) {
+      document.querySelectorAll('[data-lang]').forEach(el => {
+        el.style.display = el.getAttribute('data-lang') === lang ? 'block' : 'none';
+      });
     }
 
     updatePreview();

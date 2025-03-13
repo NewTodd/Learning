@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lesson 18 - Semantic HTML: &lt;footer&gt;</title>
+  <title>Lesson 19 - Semantic HTML: &lt;article&gt;</title>
   <link rel="stylesheet" href="../styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -114,27 +114,27 @@
   <div class="main-container">
     <div class="editor-panel">
       <div class="instructions">
-        <h2 data-lang="en">Lesson 18: Semantic HTML - &lt;footer&gt;</h2>
-        <h2 data-lang="kh" style="display:none">មេរៀនទី ១៨៖ Tag មានអត្ថន័យ &lt;footer&gt;</h2>
+        <h2 data-lang="en">Lesson 19: Semantic HTML - &lt;article&gt;</h2>
+        <h2 data-lang="kh" style="display:none">មេរៀនទី ១៩៖ Tag មានអត្ថន័យ &lt;article&gt;</h2>
 
         <h3 data-lang="en">Objectives:</h3>
         <h3 data-lang="kh" style="display:none">គោលបំណង:</h3>
         <ul data-lang="en">
-          <li>Learn what the &lt;footer&gt; tag is used for</li>
-          <li>Understand how it defines a footer section</li>
-          <li>Practice creating a basic footer</li>
+          <li>Learn what the &lt;article&gt; tag is used for</li>
+          <li>Understand how it defines independent content</li>
+          <li>Practice writing a basic article tag</li>
         </ul>
         <ul data-lang="kh" style="display:none">
-          <li>សិក្សាពីការប្រើ &lt;footer&gt; សម្រាប់ផ្នែកបាតគេ</li>
-          <li>យល់ពីតួនាទីនៃ tag &lt;footer&gt; ក្នុងគេហទំព័រ</li>
-          <li>អនុវត្តបង្កើតផ្នែក footer មួយ</li>
+          <li>សិក្សាពីការប្រើ &lt;article&gt; សម្រាប់មាតិកាឯករាជ្យ</li>
+          <li>យល់ពីតួនាទីនៃ tag &lt;article&gt;</li>
+          <li>អនុវត្តសរសេរ article មួយ</li>
         </ul>
 
-        <p data-lang="en"><strong>👉 Your Task:</strong> Type <code>&lt;footer&gt;Copyright 2025&lt;/footer&gt;</code> below.</p>
-        <p data-lang="kh" style="display:none"><strong>👉 ភារកិច្ច:</strong> វាយ <code>&lt;footer&gt;Copyright 2025&lt;/footer&gt;</code> ខាងក្រោម។</p>
+        <p data-lang="en"><strong>👉 Your Task:</strong> Type <code>&lt;article&gt;This is an article.&lt;/article&gt;</code> below.</p>
+        <p data-lang="kh" style="display:none"><strong>👉 ភារកិច្ច:</strong> វាយ <code>&lt;article&gt;This is an article.&lt;/article&gt;</code> ខាងក្រោម។</p>
 
         <pre style="margin-top: 1rem; background-color: #1e293b; color: #f8fafc; padding: 1rem; border-radius: 8px;">
-<footer>Copyright 2025</footer>
+<article>This is an article.</article>
         </pre>
       </div>
       <textarea id="code"></textarea>
@@ -143,10 +143,10 @@
         <button onclick="resetCode()">🔄 Reset</button>
       </div>
       <div class="next-step" id="nextStep">
-        <a href="lesson17.html" data-lang="en">⬅️ Previous</a>
-        <a href="lesson17.html" data-lang="kh" style="display:none">⬅️ ជំហានមុន</a>
-        <a href="lesson19.html" data-lang="en">➡️ Next Step</a>
-        <a href="lesson19.html" data-lang="kh" style="display:none">➡️ ជំហានបន្ទាប់</a>
+        <a href="lesson18.html" data-lang="en">⬅️ Previous</a>
+        <a href="lesson18.html" data-lang="kh" style="display:none">⬅️ ជំហានមុន</a>
+        <a href="lesson20.html" data-lang="en">➡️ Next Step</a>
+        <a href="lesson20.html" data-lang="kh" style="display:none">➡️ ជំហានបន្ទាប់</a>
       </div>
     </div>
     <div class="preview-panel">
@@ -172,13 +172,13 @@
       const code = editor.value.trim().toLowerCase();
       const lang = document.querySelector('[data-lang][style*="block"]')?.dataset.lang || 'en';
 
-      if (code.includes("<footer>") && code.includes("</footer>")) {
-        alert(lang === 'kh' ? '✅ ល្អណាស់! អ្នកបានប្រើ <footer> tag ដោយត្រឹមត្រូវ។' : '✅ Great job! You used the <footer> tag correctly.');
+      if (code.includes("<article>") && code.includes("</article>")) {
+        alert(lang === 'kh' ? '✅ ល្អណាស់! អ្នកបានប្រើ <article> tag ដោយត្រឹមត្រូវ។' : '✅ Great job! You used the <article> tag correctly.');
         sound.play();
         nextStep.style.display = "flex";
         confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
       } else {
-        alert(lang === 'kh' ? '❌ សូមប្រើ <footer> tag ដូចក្នុងគំរូ។' : '❌ Please use the <footer> tag as shown.');
+        alert(lang === 'kh' ? '❌ សូមប្រើ <article> tag ដូចក្នុងគំរូ។' : '❌ Please use the <article> tag as shown.');
         nextStep.style.display = "none";
       }
     }

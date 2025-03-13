@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lesson 6 - Anchor Tag in HTML</title>
+  <title>Lesson 6 - HTML Anchor Tag</title>
   <link rel="stylesheet" href="../styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -62,7 +62,7 @@
     }
     textarea {
       width: 100%;
-      height: 60px;
+      height: 40px;
       font-family: monospace;
       background-color: #0f172a;
       color: #f8fafc;
@@ -93,8 +93,7 @@
     }
     .next-step {
       margin-top: 1rem;
-      display: flex;
-      gap: 1rem;
+      display: none;
     }
     .next-step a {
       background: #10b981;
@@ -104,26 +103,41 @@
       font-weight: bold;
       text-decoration: none;
     }
-    #nextLink, #nextLinkKh {
-      display: none;
-    }
   </style>
 </head>
 <body>
   <div class="toolbar">
     <button onclick="switchLanguage('en')">English</button>
-    <button onclick="switchLanguage('kh')">ភាសាខមែរ</button>
-    <button id="themeToggle" onclick="toggleTheme()">🌙</button>
+    <button onclick="switchLanguage('kh')">ភាសាខ្មែរ</button>
   </div>
   <div class="main-container">
     <div class="editor-panel">
       <div class="instructions">
+        <h2 data-lang="en">Lesson 6: Anchor Tags in HTML</h2>
+        <h2 data-lang="kh" style="display: none;">មេរៀនទី ៦៖ ស្លាកតំណ (Anchor) ក្នុង HTML</h2>
+
+        <h3 data-lang="en">Objectives:</h3>
+        <h3 data-lang="kh" style="display:none;">គោលបំណង:</h3>
+        <ul data-lang="en">
+          <li>Learn how to use the &lt;a&gt; tag</li>
+          <li>Understand how the href attribute works</li>
+          <li>Create a clickable link to a website</li>
+        </ul>
+        <ul data-lang="kh" style="display:none;">
+          <li>សិក្សាពីរបៀបប្រើស្លាក &lt;a&gt;</li>
+          <li>យល់ពីការប្រើប៉ារ៉ាម៉ែត្រ href</li>
+          <li>បង្កើតតំណដែលអាចចុចបានទៅកាន់គេហទំព័រ</li>
+        </ul>
+
         <h3 data-lang="en">Step 6 ✅</h3>
-        <h3 data-lang="kh" style="display: none;">ពីមានទិចាសុព្រប់អុច ✅</h3>
-        <p data-lang="en">Use the <code>&lt;a&gt;</code> tag to create clickable links. The <code>href</code> attribute specifies the URL.</p>
-        <p data-lang="kh" style="display: none;">នេល <code>&lt;a&gt;</code> ខ្នំបានង់ទាងកម៉ុនមុចជ្រានច្តាំតាហាន់បក្រុកលំតានទុប់ href សាប់ពេធត្រានទិង URL</p>
-        <p data-lang="en"><strong>👉 Your Task:</strong> Type <code>&lt;a href="https://google.com"&gt;Visit Google&lt;/a&gt;</code> below.</p>
-        <p data-lang="kh" style="display: none;"><strong>👉 ពីរ៉ាក្ករង់:</strong> ភំ <code>&lt;a href="https://google.com"&gt;Visit Google&lt;/a&gt;</code> ពេនក្រាកស្ធទិស្ធពុប់ទ្រោសេរ</p>
+        <h3 data-lang="kh" style="display: none;">ជំហានទី ៦ ✅</h3>
+        <p data-lang="en">The &lt;a&gt; tag is used to create a hyperlink to another webpage.</p>
+        <p data-lang="kh" style="display: none;">ស្លាក &lt;a&gt; ត្រូវបានប្រើដើម្បីបង្កើតតំណភ្ជាប់ទៅកាន់ទំព័រផ្សេងទៀត។</p>
+        <p data-lang="en"><strong>👉 Your Task:</strong> Link to https://www.google.com using the &lt;a&gt; tag.</p>
+        <p data-lang="kh" style="display: none;"><strong>👉 ភារកិច្ច:</strong> បង្កើតតំណទៅកាន់ https://www.google.com ដោយប្រើស្លាក &lt;a&gt;។</p>
+        <pre style="margin-top: 1rem; background-color: #1e293b; color: #f8fafc; padding: 1rem; border-radius: 8px;">
+<a href="https://www.google.com">Visit Google</a>
+        </pre>
       </div>
       <textarea id="code"></textarea>
       <div class="btn-group">
@@ -131,68 +145,60 @@
         <button onclick="resetCode()">🔄 Reset</button>
       </div>
       <div class="next-step" id="nextStep">
-        <a href="lesson5.html" data-lang="en">⬅️ Previous</a>
-        <a href="lesson5.html" data-lang="kh" style="display: none;">⬅️ កំដុបណ្រា</a>
-        <a href="lesson7.html" data-lang="en" id="nextLink">➡️ Next Step</a>
-        <a href="lesson7.html" data-lang="kh" id="nextLinkKh" style="display: none;">➡️ ពីមានាខ</a>
+        <a href="lesson7.html" data-lang="en">➡️ Next Step</a>
+        <a href="lesson7.html" data-lang="kh" style="display: none;">➡️ ជំហានបន្ទាប់</a>
       </div>
     </div>
     <div class="preview-panel">
       <iframe id="preview"></iframe>
     </div>
   </div>
+
   <audio id="successSound" src="success.mp3" preload="auto"></audio>
-  <script src="../script.js"></script>
   <script>
     const editor = document.getElementById("code");
     const preview = document.getElementById("preview");
     const sound = document.getElementById("successSound");
-    const nextLink = document.getElementById("nextLink");
-    const nextLinkKh = document.getElementById("nextLinkKh");
-
+    const nextStep = document.getElementById("nextStep");
     const defaultCode = "";
 
     editor.addEventListener("input", updatePreview);
-
-    window.addEventListener("load", () => {
-      editor.focus();
-    });
+    window.addEventListener("load", () => editor.focus());
 
     function updatePreview() {
       preview.srcdoc = `<!DOCTYPE html><html><head><style>body{background:white;color:black;padding:1rem;}</style></head><body>${editor.value}</body></html>`;
     }
 
     function checkCode() {
-      const code = editor.value.trim().toLowerCase();
+      const code = editor.value.toLowerCase();
       const currentLang = document.querySelector('[data-lang][style*="block"]')?.dataset.lang || 'en';
+      const hasLink = /<a\s+[^>]*href\s*=\s*['"]https:\/\/www\.google\.com['"][^>]*>.*<\/a>/.test(code);
 
-      if (code.includes("<a") && code.includes("href") && code.includes("</a>")) {
+      if (hasLink) {
         alert(currentLang === "kh"
-          ? "✅ នេល tag <a> បានប័យបុចបត្រាទ់ម៉ុនច្សារធេន្នោសេរ។"
-          : "✅ Great job! You used the <a> tag correctly.");
+          ? "✅ អ្នកបានបង្កើតតំណទៅកាន់ Google ដោយត្រឹមត្រូវ។"
+          : "✅ Great job! You linked to Google correctly.");
         sound.play();
-        if (currentLang === 'kh') {
-          nextLinkKh.style.display = "inline-block";
-          nextLink.style.display = "none";
-        } else {
-          nextLink.style.display = "inline-block";
-          nextLinkKh.style.display = "none";
-        }
+        nextStep.style.display = "block";
         confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
       } else {
         alert(currentLang === "kh"
-          ? "❌ សៅបុច tag <a> តាំ href ជូវជ្រានសាប់។"
-          : "❌ Try again. Use the <a> tag with href and closing </a>.");
-        nextLink.style.display = "none";
-        nextLinkKh.style.display = "none";
+          ? "❌ សូមប្រើស្លាក <a> ដើម្បីបង្កើតតំណទៅកាន់ Google។"
+          : "❌ Try again. Use the <a> tag to link to Google.");
+        nextStep.style.display = "none";
       }
     }
 
     function resetCode() {
       editor.value = defaultCode;
       updatePreview();
-      nextLink.style.display = "none";
-      nextLinkKh.style.display = "none";
+      nextStep.style.display = "none";
+    }
+
+    function switchLanguage(lang) {
+      document.querySelectorAll('[data-lang]').forEach(el => {
+        el.style.display = el.getAttribute('data-lang') === lang ? 'block' : 'none';
+      });
     }
 
     updatePreview();

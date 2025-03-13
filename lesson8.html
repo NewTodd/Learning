@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lesson 8 - Links in HTML</title>
+  <title>Lesson 8 - HTML Link Targets</title>
   <link rel="stylesheet" href="../styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -62,7 +62,7 @@
     }
     textarea {
       width: 100%;
-      height: 60px;
+      height: 40px;
       font-family: monospace;
       background-color: #0f172a;
       color: #f8fafc;
@@ -93,8 +93,7 @@
     }
     .next-step {
       margin-top: 1rem;
-      display: flex;
-      gap: 1rem;
+      display: none;
     }
     .next-step a {
       background: #10b981;
@@ -104,26 +103,41 @@
       font-weight: bold;
       text-decoration: none;
     }
-    #nextLink, #nextLinkKh {
-      display: none;
-    }
   </style>
 </head>
 <body>
   <div class="toolbar">
     <button onclick="switchLanguage('en')">English</button>
     <button onclick="switchLanguage('kh')">ភាសាខ្មែរ</button>
-    <button id="themeToggle" onclick="toggleTheme()">🌙</button>
   </div>
   <div class="main-container">
     <div class="editor-panel">
       <div class="instructions">
+        <h2 data-lang="en">Lesson 8: Link Targets in HTML</h2>
+        <h2 data-lang="kh" style="display: none;">មេរៀនទី ៨៖ ទិសដៅតំណ (Link Targets) ក្នុង HTML</h2>
+
+        <h3 data-lang="en">Objectives:</h3>
+        <h3 data-lang="kh" style="display:none;">គោលបំណង:</h3>
+        <ul data-lang="en">
+          <li>Understand how to open links in new tabs</li>
+          <li>Learn about the <code>target</code> attribute</li>
+          <li>Practice using <code>target="_blank"</code> with a link</li>
+        </ul>
+        <ul data-lang="kh" style="display:none;">
+          <li>យល់ពីរបៀបបើកតំណនៅក្នុងផ្ទាំងថ្មី</li>
+          <li>សិក្សាពីអាទ្រង់ស្រង់ <code>target</code></li>
+          <li>អនុវត្តន៍ប្រើ <code>target="_blank"</code> ជាមួយតំណ</li>
+        </ul>
+
         <h3 data-lang="en">Step 8 ✅</h3>
         <h3 data-lang="kh" style="display: none;">ជំហានទី ៨ ✅</h3>
-        <p data-lang="en">In HTML, the <code>&lt;a&gt;</code> tag is used to create links. You must include an <code>href</code> attribute to specify the destination URL.</p>
-        <p data-lang="kh" style="display: none;">នៅក្នុង HTML tag <code>&lt;a&gt;</code> ត្រូវបានប្រើសម្រាប់បង្កើតតំណភ្ជាប់។ អ្នកត្រូវតែបញ្ចូល attribute <code>href</code> ដើម្បីបញ្ជាក់អាសយដ្ឋាន URL។</p>
-        <p data-lang="en"><strong>👉 Your Task:</strong> Type <code>&lt;a href="https://example.com"&gt;Visit&lt;/a&gt;</code> in the box below.</p>
-        <p data-lang="kh" style="display: none;"><strong>👉 ភារកិច្ច:</strong> វាយ <code>&lt;a href="https://example.com"&gt;Visit&lt;/a&gt;</code> ខាងក្រោម។</p>
+        <p data-lang="en">Add <code>target="_blank"</code> to your anchor tag to open a link in a new tab.</p>
+        <p data-lang="kh" style="display: none;">បន្ថែម <code>target="_blank"</code> ទៅស្លាក <code>&lt;a&gt;</code> ដើម្បីបើកតំណនៅក្នុងផ្ទាំងថ្មី។</p>
+        <p data-lang="en"><strong>👉 Your Task:</strong> Make a link to https://basiccodekh.org that opens in a new tab.</p>
+        <p data-lang="kh" style="display: none;"><strong>👉 ភារកិច្ច:</strong> បង្កើតតំណទៅកាន់ https://basiccodekh.org ដែលបើកក្នុងផ្ទាំងថ្មី។</p>
+        <pre style="margin-top: 1rem; background-color: #1e293b; color: #f8fafc; padding: 1rem; border-radius: 8px;">
+<a href="https://basiccodekh.org" target="_blank">Visit BasicCodeKh</a>
+        </pre>
       </div>
       <textarea id="code"></textarea>
       <div class="btn-group">
@@ -131,10 +145,8 @@
         <button onclick="resetCode()">🔄 Reset</button>
       </div>
       <div class="next-step" id="nextStep">
-        <a href="lesson7.html" data-lang="en">⬅️ Previous</a>
-        <a href="lesson7.html" data-lang="kh" style="display: none;">⬅️ ជំហានមុន</a>
-        <a href="lesson9.html" data-lang="en" id="nextLink">➡️ Next Step</a>
-        <a href="lesson9.html" data-lang="kh" id="nextLinkKh" style="display: none;">➡️ ជំហានបន្ទាប់</a>
+        <a href="lesson9.html" data-lang="en">➡️ Next Step</a>
+        <a href="lesson9.html" data-lang="kh" style="display: none;">➡️ ជំហានបន្ទាប់</a>
       </div>
     </div>
     <div class="preview-panel">
@@ -143,57 +155,50 @@
   </div>
 
   <audio id="successSound" src="success.mp3" preload="auto"></audio>
-  <script src="../script.js"></script>
   <script>
     const editor = document.getElementById("code");
     const preview = document.getElementById("preview");
     const sound = document.getElementById("successSound");
-    const nextLink = document.getElementById("nextLink");
-    const nextLinkKh = document.getElementById("nextLinkKh");
-
+    const nextStep = document.getElementById("nextStep");
     const defaultCode = "";
 
     editor.addEventListener("input", updatePreview);
-
-    window.addEventListener("load", () => {
-      editor.focus();
-    });
+    window.addEventListener("load", () => editor.focus());
 
     function updatePreview() {
       preview.srcdoc = `<!DOCTYPE html><html><head><style>body{background:white;color:black;padding:1rem;}</style></head><body>${editor.value}</body></html>`;
     }
 
     function checkCode() {
-      const code = editor.value.trim().toLowerCase();
+      const code = editor.value.toLowerCase();
       const currentLang = document.querySelector('[data-lang][style*="block"]')?.dataset.lang || 'en';
+      const hasTargetLink = /<a\s+[^>]*href=["']https:\/\/basiccodekh\.org["'][^>]*target=["']_blank["'][^>]*>.*<\/a>/.test(code);
 
-      if (code.includes("<a") && code.includes("href") && code.includes("</a>")) {
+      if (hasTargetLink) {
         alert(currentLang === "kh"
-          ? "✅ អ្នកបានប្រើ tag <a> ដោយត្រឹមត្រូវ។"
-          : "✅ Great job! You used the <a> tag correctly.");
+          ? "✅ អ្នកបានបង្កើតតំណដែលបើកនៅផ្ទាំងថ្មីដោយត្រឹមត្រូវ។"
+          : "✅ Great job! Your link opens in a new tab.");
         sound.play();
-        if (currentLang === 'kh') {
-          nextLinkKh.style.display = "inline-block";
-          nextLink.style.display = "none";
-        } else {
-          nextLink.style.display = "inline-block";
-          nextLinkKh.style.display = "none";
-        }
+        nextStep.style.display = "block";
         confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
       } else {
         alert(currentLang === "kh"
-          ? "❌ សូមប្រើ tag <a> និង href ដើម្បីបញ្ចប់។"
-          : "❌ Try again. Use the <a> tag with an href attribute.");
-        nextLink.style.display = "none";
-        nextLinkKh.style.display = "none";
+          ? "❌ សូមប្រើ target=\"_blank\" ជាមួយ href។"
+          : "❌ Try again. Use target=\"_blank\" with href.");
+        nextStep.style.display = "none";
       }
     }
 
     function resetCode() {
       editor.value = defaultCode;
       updatePreview();
-      nextLink.style.display = "none";
-      nextLinkKh.style.display = "none";
+      nextStep.style.display = "none";
+    }
+
+    function switchLanguage(lang) {
+      document.querySelectorAll('[data-lang]').forEach(el => {
+        el.style.display = el.getAttribute('data-lang') === lang ? 'block' : 'none';
+      });
     }
 
     updatePreview();

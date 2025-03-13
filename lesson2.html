@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lesson 2 - Headings in HTML</title>
+  <title>Lesson 2 - HTML Headings</title>
   <link rel="stylesheet" href="../styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -93,8 +93,7 @@
     }
     .next-step {
       margin-top: 1rem;
-      display: flex;
-      gap: 1rem;
+      display: none;
     }
     .next-step a {
       background: #10b981;
@@ -104,27 +103,43 @@
       font-weight: bold;
       text-decoration: none;
     }
-    #nextLink,
-    #nextLinkKh {
-      display: none;
-    }
   </style>
 </head>
 <body>
   <div class="toolbar">
     <button onclick="switchLanguage('en')">English</button>
     <button onclick="switchLanguage('kh')">ភាសាខ្មែរ</button>
-    <button id="themeToggle" onclick="toggleTheme()">🌙</button>
   </div>
   <div class="main-container">
     <div class="editor-panel">
       <div class="instructions">
+        <h2 data-lang="en">Lesson 2: Headings in HTML</h2>
+        <h2 data-lang="kh" style="display: none;">មេរៀនទី ២៖ ក្បាលបង្ហាញ (Headings) ក្នុង HTML</h2>
+
+        <h3 data-lang="en">Objectives:</h3>
+        <h3 data-lang="kh" style="display:none;">គោលបំណង:</h3>
+        <ul data-lang="en">
+          <li>Learn how to use heading tags in HTML</li>
+          <li>Understand the differences between &lt;h1&gt; to &lt;h6&gt;</li>
+          <li>Practice writing structured content</li>
+        </ul>
+        <ul data-lang="kh" style="display:none;">
+          <li>សិក្សាពីរបៀបប្រើស្លាកក្បាលបង្ហាញក្នុង HTML</li>
+          <li>យល់ដឹងអំពីភាពខុសគ្នារវាង &lt;h1&gt; ដល់ &lt;h6&gt;</li>
+          <li>អនុវត្តន៍ការសរសេរខ្លឹមសារដោយមានរចនាសម្ព័ន្ធ</li>
+        </ul>
+
         <h3 data-lang="en">Step 2 ✅</h3>
         <h3 data-lang="kh" style="display: none;">ជំហានទី ២ ✅</h3>
-        <p data-lang="en">HTML uses heading tags <code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code> to define headings. <code>&lt;h1&gt;</code> is the largest, and <code>&lt;h6&gt;</code> is the smallest.</p>
-        <p data-lang="kh" style="display: none;">HTML ប្រើ tag ចំណងជើង <code>&lt;h1&gt;</code> ដល់ <code>&lt;h6&gt;</code> ដើម្បីកំណត់ចំណងជើង។ <code>&lt;h1&gt;</code> ធំបំផុត ហើយ <code>&lt;h6&gt;</code> តូចបំផុត។</p>
-        <p data-lang="en"><strong>👉 Your Task:</strong> Type <code>&lt;h1&gt;Hello&lt;/h1&gt;</code> in the box below to test your knowledge.</p>
-        <p data-lang="kh" style="display: none;"><strong>👉 ភារកិច្ច:</strong> វាយ <code>&lt;h1&gt;Hello&lt;/h1&gt;</code> ខាងក្រោមដើម្បីសាកល្បងចំណេះដឹងរបស់អ្នក។</p>
+        <p data-lang="en">Use heading tags like <code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code> to structure your page.</p>
+        <p data-lang="kh" style="display: none;">ប្រើស្លាក <code>&lt;h1&gt;</code> ដល់ <code>&lt;h6&gt;</code> ដើម្បីរៀបចំទំព័ររបស់អ្នក។</p>
+        <p data-lang="en"><strong>👉 Your Task:</strong> Type a heading using <code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code>.</p>
+        <p data-lang="kh" style="display: none;"><strong>👉 ភារកិច្ច:</strong> សរសេរក្បាលបង្ហាញដោយប្រើ <code>&lt;h1&gt;</code> ដល់ <code>&lt;h6&gt;</code>។</p>
+        <pre style="margin-top: 1rem; background-color: #1e293b; color: #f8fafc; padding: 1rem; border-radius: 8px;">
+<h1>This is an h1 heading</h1>
+<h2>This is an h2 heading</h2>
+<h3>This is an h3 heading</h3>
+        </pre>
       </div>
       <textarea id="code"></textarea>
       <div class="btn-group">
@@ -132,10 +147,8 @@
         <button onclick="resetCode()">🔄 Reset</button>
       </div>
       <div class="next-step" id="nextStep">
-        <a href="lesson1.html" data-lang="en">⬅️ Previous</a>
-        <a href="lesson1.html" data-lang="kh" style="display: none;">⬅️ ជំហានមុន</a>
-        <a href="lesson3.html" data-lang="en" id="nextLink">➡️ Next Step</a>
-        <a href="lesson3.html" data-lang="kh" id="nextLinkKh">➡️ ជំហានបន្ទាប់</a>
+        <a href="lesson3.html" data-lang="en">➡️ Next Step</a>
+        <a href="lesson3.html" data-lang="kh" style="display: none;">➡️ ជំហានបន្ទាប់</a>
       </div>
     </div>
     <div class="preview-panel">
@@ -144,53 +157,50 @@
   </div>
 
   <audio id="successSound" src="success.mp3" preload="auto"></audio>
-  <script src="../script.js"></script>
   <script>
     const editor = document.getElementById("code");
     const preview = document.getElementById("preview");
     const sound = document.getElementById("successSound");
     const nextStep = document.getElementById("nextStep");
-    const nextLink = document.getElementById("nextLink");
-    const nextLinkKh = document.getElementById("nextLinkKh");
-
     const defaultCode = "";
 
     editor.addEventListener("input", updatePreview);
-
-    window.addEventListener("load", () => {
-      editor.focus();
-    });
+    window.addEventListener("load", () => editor.focus());
 
     function updatePreview() {
       preview.srcdoc = `<!DOCTYPE html><html><head><style>body{background:white;color:black;padding:1rem;}</style></head><body>${editor.value}</body></html>`;
     }
 
     function checkCode() {
-      const code = editor.value.trim().toLowerCase();
+      const code = editor.value.toLowerCase();
       const currentLang = document.querySelector('[data-lang][style*="block"]')?.dataset.lang || 'en';
+      const hasHeading = /<h[1-6]>.*<\/h[1-6]>/.test(code);
 
-      if (code.includes("<h1>") && code.includes("</h1>")) {
+      if (hasHeading) {
         alert(currentLang === "kh"
-          ? "✅ អ្នកបានប្រើ tag <h1> ដោយត្រឹមត្រូវ។"
-          : "✅ Great job! You used the <h1> tag correctly.");
+          ? "✅ អ្នកបានប្រើស្លាកក្បាលបង្ហាញដោយត្រឹមត្រូវ។"
+          : "✅ Great job! You used a heading tag correctly.");
         sound.play();
-        nextLink.style.display = "inline-block";
-        nextLinkKh.style.display = "inline-block";
+        nextStep.style.display = "block";
         confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
       } else {
         alert(currentLang === "kh"
-          ? "❌ សូមប្រើ tag <h1> និង </h1> ដើម្បីបញ្ចប់។"
-          : "❌ Try again. Use both <h1> and </h1> tags.");
-        nextLink.style.display = "none";
-        nextLinkKh.style.display = "none";
+          ? "❌ សូមបញ្ចូលស្លាក <h1> ដល់ <h6> ក្នុងកូដ។"
+          : "❌ Try again. Use a heading tag like <h1> to <h6> in your code.");
+        nextStep.style.display = "none";
       }
     }
 
     function resetCode() {
       editor.value = defaultCode;
       updatePreview();
-      nextLink.style.display = "none";
-      nextLinkKh.style.display = "none";
+      nextStep.style.display = "none";
+    }
+
+    function switchLanguage(lang) {
+      document.querySelectorAll('[data-lang]').forEach(el => {
+        el.style.display = el.getAttribute('data-lang') === lang ? 'block' : 'none';
+      });
     }
 
     updatePreview();

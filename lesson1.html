@@ -114,6 +114,22 @@
   <div class="main-container">
     <div class="editor-panel">
       <div class="instructions">
+        <h2 data-lang="en">Lesson 1: Basic HTML Setup</h2>
+        <h2 data-lang="kh" style="display: none;">មេរៀនទី ១៖ ការរៀបចំ HTML មូលដ្ឋាន</h2>
+
+        <h3 data-lang="en">Objectives:</h3>
+        <h3 data-lang="kh" style="display:none;">គោលបំណង:</h3>
+        <ul data-lang="en">
+          <li>Understand basic HTML structure</li>
+          <li>Create your first HTML file</li>
+          <li>Use tags like &lt;!DOCTYPE&gt;, &lt;html&gt;, &lt;head&gt;, and &lt;body&gt;</li>
+        </ul>
+        <ul data-lang="kh" style="display:none;">
+          <li>យល់ដឹងអំពីរចនាសម្ព័ន្ធ HTML</li>
+          <li>បង្កើតឯកសារ HTML ដំបូងរបស់អ្នក</li>
+          <li>ប្រើស្លាកដូចជា &lt;!DOCTYPE&gt;, &lt;html&gt;, &lt;head&gt;, និង &lt;body&gt;</li>
+        </ul>
+
         <h3 data-lang="en">Step 1 ✅</h3>
         <h3 data-lang="kh" style="display: none;">ជំហានទី ១ ✅</h3>
         <p data-lang="en">HTML documents start with <code>&lt;!DOCTYPE html&gt;</code> and contain <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code>, and <code>&lt;body&gt;</code> tags to structure the page.</p>
@@ -153,14 +169,10 @@
     const preview = document.getElementById("preview");
     const sound = document.getElementById("successSound");
     const nextStep = document.getElementById("nextStep");
-
     const defaultCode = "";
 
     editor.addEventListener("input", updatePreview);
-
-    window.addEventListener("load", () => {
-      editor.focus();
-    });
+    window.addEventListener("load", () => editor.focus());
 
     function updatePreview() {
       preview.srcdoc = `<!DOCTYPE html><html><head><style>body{background:white;color:black;padding:1rem;}</style></head><body>${editor.value}</body></html>`;
@@ -189,6 +201,12 @@
       editor.value = defaultCode;
       updatePreview();
       nextStep.style.display = "none";
+    }
+
+    function switchLanguage(lang) {
+      document.querySelectorAll('[data-lang]').forEach(el => {
+        el.style.display = el.getAttribute('data-lang') === lang ? 'block' : 'none';
+      });
     }
 
     updatePreview();

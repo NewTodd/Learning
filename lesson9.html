@@ -62,7 +62,7 @@
     }
     textarea {
       width: 100%;
-      height: 60px;
+      height: 40px;
       font-family: monospace;
       background-color: #0f172a;
       color: #f8fafc;
@@ -93,8 +93,7 @@
     }
     .next-step {
       margin-top: 1rem;
-      display: flex;
-      gap: 1rem;
+      display: none;
     }
     .next-step a {
       background: #10b981;
@@ -104,26 +103,41 @@
       font-weight: bold;
       text-decoration: none;
     }
-    #nextLink, #nextLinkKh {
-      display: none;
-    }
   </style>
 </head>
 <body>
   <div class="toolbar">
     <button onclick="switchLanguage('en')">English</button>
     <button onclick="switchLanguage('kh')">ភាសាខ្មែរ</button>
-    <button id="themeToggle" onclick="toggleTheme()">🌙</button>
   </div>
   <div class="main-container">
     <div class="editor-panel">
       <div class="instructions">
+        <h2 data-lang="en">Lesson 9: Bold and Italic Text</h2>
+        <h2 data-lang="kh" style="display: none;">មេរៀនទី ៩៖ អត្ថបទដិត និងទ្រេត</h2>
+
+        <h3 data-lang="en">Objectives:</h3>
+        <h3 data-lang="kh" style="display:none;">គោលបំណង:</h3>
+        <ul data-lang="en">
+          <li>Learn to use <code>&lt;b&gt;</code>, <code>&lt;strong&gt;</code>, <code>&lt;i&gt;</code>, and <code>&lt;em&gt;</code></li>
+          <li>Understand the difference between visual and semantic emphasis</li>
+          <li>Practice combining both tags</li>
+        </ul>
+        <ul data-lang="kh" style="display:none;">
+          <li>សិក្សាពីស្លាក <code>&lt;b&gt;</code>, <code>&lt;strong&gt;</code>, <code>&lt;i&gt;</code>, និង <code>&lt;em&gt;</code></li>
+          <li>យល់ពីភាពខុសគ្នារវាងការតែងអត្ថបទដោយរូបភាព និងន័យ</li>
+          <li>អនុវត្តការរួមបញ្ចូលស្លាកទាំងនេះ</li>
+        </ul>
+
         <h3 data-lang="en">Step 9 ✅</h3>
         <h3 data-lang="kh" style="display: none;">ជំហានទី ៩ ✅</h3>
-        <p data-lang="en">Use <code>&lt;strong&gt;</code> to make text <strong>bold</strong> and <code>&lt;em&gt;</code> to make text <em>italic</em>.</p>
-        <p data-lang="kh" style="display: none;">ប្រើ <code>&lt;strong&gt;</code> ដើម្បីធ្វើអត្ថបទអោយ <strong>ដិត</strong> និង <code>&lt;em&gt;</code> សម្រាប់អត្ថបទ <em>ទ្រេត</em>។</p>
-        <p data-lang="en"><strong>👉 Your Task:</strong> Type <code>&lt;strong&gt;Bold&lt;/strong&gt;</code> or <code>&lt;em&gt;Italic&lt;/em&gt;</code> below.</p>
-        <p data-lang="kh" style="display: none;"><strong>👉 ភារកិច្ច:</strong> វាយ <code>&lt;strong&gt;Bold&lt;/strong&gt;</code> ឬ <code>&lt;em&gt;Italic&lt;/em&gt;</code> ខាងក្រោម។</p>
+        <p data-lang="en">Use <code>&lt;b&gt;</code> or <code>&lt;strong&gt;</code> for bold, and <code>&lt;i&gt;</code> or <code>&lt;em&gt;</code> for italic text.</p>
+        <p data-lang="kh" style="display: none;">ប្រើ <code>&lt;b&gt;</code> ឬ <code>&lt;strong&gt;</code> សម្រាប់អត្ថបទដិត និង <code>&lt;i&gt;</code> ឬ <code>&lt;em&gt;</code> សម្រាប់អត្ថបទទ្រេត។</p>
+        <p data-lang="en"><strong>👉 Your Task:</strong> Make one word bold and one word italic in a sentence.</p>
+        <p data-lang="kh" style="display: none;"><strong>👉 ភារកិច្ច:</strong> ធ្វើឲ្យពាក្យមួយដិត និងពាក្យមួយទ្រេតក្នុងប្រយោគ។</p>
+        <pre style="margin-top: 1rem; background-color: #1e293b; color: #f8fafc; padding: 1rem; border-radius: 8px;">
+<p>I love <b>coding</b> and <i>learning</i> new things!</p>
+        </pre>
       </div>
       <textarea id="code"></textarea>
       <div class="btn-group">
@@ -131,10 +145,8 @@
         <button onclick="resetCode()">🔄 Reset</button>
       </div>
       <div class="next-step" id="nextStep">
-        <a href="lesson8.html" data-lang="en">⬅️ Previous</a>
-        <a href="lesson8.html" data-lang="kh" style="display: none;">⬅️ ជំហានមុន</a>
-        <a href="lesson10.html" data-lang="en" id="nextLink">➡️ Next Step</a>
-        <a href="lesson10.html" data-lang="kh" id="nextLinkKh" style="display: none;">➡️ ជំហានបន្ទាប់</a>
+        <a href="lesson10.html" data-lang="en">➡️ Next Step</a>
+        <a href="lesson10.html" data-lang="kh" style="display: none;">➡️ ជំហានបន្ទាប់</a>
       </div>
     </div>
     <div class="preview-panel">
@@ -142,61 +154,56 @@
     </div>
   </div>
 
-  <audio id="successSound" src="/success.mp3" preload="auto"></audio>
-  <script src="../script.js"></script>
+  <audio id="successSound" src="success.mp3" preload="auto"></audio>
   <script>
     const editor = document.getElementById("code");
     const preview = document.getElementById("preview");
     const sound = document.getElementById("successSound");
-    const nextLink = document.getElementById("nextLink");
-    const nextLinkKh = document.getElementById("nextLinkKh");
-
+    const nextStep = document.getElementById("nextStep");
     const defaultCode = "";
 
     editor.addEventListener("input", updatePreview);
-
-    window.addEventListener("load", () => {
-      editor.focus();
-    });
+    window.addEventListener("load", () => editor.focus());
 
     function updatePreview() {
       preview.srcdoc = `<!DOCTYPE html><html><head><style>body{background:white;color:black;padding:1rem;}</style></head><body>${editor.value}</body></html>`;
     }
 
     function checkCode() {
-      const code = editor.value.trim().toLowerCase();
+      const code = editor.value.toLowerCase();
       const currentLang = document.querySelector('[data-lang][style*="block"]')?.dataset.lang || 'en';
+      const hasBold = /<(b|strong)>.*<\/(b|strong)>/.test(code);
+      const hasItalic = /<(i|em)>.*<\/(i|em)>/.test(code);
 
-      if ((code.includes("<strong>") && code.includes("</strong>")) || (code.includes("<em>") && code.includes("</em>"))) {
+      if (hasBold && hasItalic) {
         alert(currentLang === "kh"
-          ? "✅ អ្នកបានប្រើ tag <strong> ឬ <em> ដោយត្រឹមត្រូវ។"
-          : "✅ Great job! You used the <strong> or <em> tag correctly.");
+          ? "✅ អ្នកបានប្រើស្លាកដិត និងទ្រេតបានត្រឹមត្រូវ។"
+          : "✅ Great job! You used both bold and italic tags correctly.");
         sound.play();
-        if (currentLang === 'kh') {
-          nextLinkKh.style.display = "inline-block";
-          nextLink.style.display = "none";
-        } else {
-          nextLink.style.display = "inline-block";
-          nextLinkKh.style.display = "none";
-        }
+        nextStep.style.display = "block";
         confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
       } else {
         alert(currentLang === "kh"
-          ? "❌ សូមប្រើ tag <strong> ឬ <em> ដើម្បីបញ្ចប់។"
-          : "❌ Try again. Use either the <strong> or <em> tag.");
-        nextLink.style.display = "none";
-        nextLinkKh.style.display = "none";
+          ? "❌ សូមប្រើស្លាកដូចជា <b>, <strong>, <i>, ឬ <em>។"
+          : "❌ Try again. Use tags like <b>, <strong>, <i>, or <em>.");
+        nextStep.style.display = "none";
       }
     }
 
     function resetCode() {
       editor.value = defaultCode;
       updatePreview();
-      nextLink.style.display = "none";
-      nextLinkKh.style.display = "none";
+      nextStep.style.display = "none";
+    }
+
+    function switchLanguage(lang) {
+      document.querySelectorAll('[data-lang]').forEach(el => {
+        el.style.display = el.getAttribute('data-lang') === lang ? 'block' : 'none';
+      });
     }
 
     updatePreview();
   </script>
 </body>
 </html>
+
