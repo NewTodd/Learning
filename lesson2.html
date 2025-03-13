@@ -1,100 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lesson 2 - Paragraphs in HTML</title>
-  <link rel="stylesheet" href="../styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lesson 2 - Headings in HTML</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
   <style>
-    #surprise {
-      display: none;
-      background: #10b981;
-      color: white;
-      padding: 2rem;
-      border-radius: 12px;
-      text-align: center;
-      margin-top: 2rem;
-      font-size: 1.3rem;
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Noto Sans Khmer', sans-serif;
+      background-color: #0f172a;
+      color: #f8fafc;
     }
-    .next-btn {
-      margin-top: 1.5rem;
-      display: inline-block;
-      background: #2563eb;
-      color: #fff;
-      padding: 0.7rem 1.5rem;
-      border-radius: 6px;
-      text-decoration: none;
+    .toolbar {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      padding: 0.5rem 1rem;
+      gap: 1rem;
+    }
+    .toolbar button {
+      background-color: #334155;
+      color: white;
+      border: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
       font-weight: bold;
+      cursor: pointer;
+    }
+    .main-container {
+      display: flex;
+      flex-direction: row;
+      width: 90%;
+      max-width: 1200px;
+      height: 90vh;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+    .editor-panel {
+      width: 50%;
+      padding: 1rem;
+      background-color: #1e293b;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .instructions {
+      background-color: #334155;
+      border-radius: 8px;
+      padding: 1rem;
+      font-size: 0.95rem;
+      line-height: 1.6;
     }
     textarea {
-      background-color: #f8fafc;
-      color: #111827;
+      width: 100%;
+      height: 40px;
       font-family: monospace;
-      font-size: 1rem;
-      border: 1px solid #ccc;
+      background-color: #0f172a;
+      color: #f8fafc;
+      border: 1px solid #475569;
       border-radius: 6px;
       padding: 1rem;
     }
-    body.dark-mode textarea {
-      background-color: #1e293b;
-      color: #f8fafc;
-      border-color: #475569;
+    .btn-group button {
+      background: #2563eb;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 4px;
+      margin-right: 0.5rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .preview-panel {
+      width: 50%;
+      background-color: white;
+      color: black;
+      border-left: 2px solid #1e293b;
     }
     iframe {
-      background-color: white;
+      width: 100%;
+      height: 100%;
+      border: none;
     }
-    body.dark-mode iframe {
-      background-color: #1e293b;
-      color-scheme: light dark;
+    .next-step {
+      margin-top: 1rem;
+      display: flex;
+      gap: 1rem;
+    }
+    .next-step a {
+      background: #10b981;
+      color: white;
+      padding: 0.5rem 1.2rem;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    #nextLink,
+    #nextLinkKh {
+      display: none;
     }
   </style>
 </head>
 <body>
-  <div class="lang-switch" style="text-align: right; margin: 1rem;">
+  <div class="toolbar">
     <button onclick="switchLanguage('en')">English</button>
     <button onclick="switchLanguage('kh')">ភាសាខ្មែរ</button>
-  </div>
-  <div class="theme-toggle" style="text-align: right; margin: 1rem;">
     <button id="themeToggle" onclick="toggleTheme()">🌙</button>
   </div>
-
-  <main style="max-width: 1000px; margin: auto; padding: 2rem;">
-    <h2 data-lang="en">Step 2: Write Your First Paragraph</h2>
-    <h2 data-lang="kh" style="display: none;">ជំហានទី ២៖ សរសេរខេតសេចក្ដីដំបូងរបស់អ្នក</h2>
-
-    <p data-lang="en">
-      In HTML, the <code>&lt;p&gt;</code> tag is used to define a <strong>paragraph</strong> of text. It automatically adds spacing before and after the paragraph, making your content more readable.
-    </p>
-    <p data-lang="en" style="margin-top: 1rem; font-weight: bold;">
-      👉 Your task: Change the text between the <code>&lt;p&gt;</code> and <code>&lt;/p&gt;</code> tags to anything you'd like! Then click "Check Your Code" below to see your result.
-    </p>
-
-    <p data-lang="kh" style="display: none;">
-      នៅក្នុង HTML <code>&lt;p&gt;</code> គឺជា tag សម្រាប់សរសេរខេតអត្ថបទមួយ។ វាបន្ថែមចន្លោះពីលើ និងក្រោម ដើម្បីអោយអត្ថបទអានបានងាយ។
-    </p>
-    <p data-lang="kh" style="display: none; margin-top: 1rem; font-weight: bold;">
-      👉 ភារកិច្ច៖ សូមប្តូរអត្ថបទនៅចន្លោះ <code>&lt;p&gt;</code> និង <code>&lt;/p&gt;</code> ទៅអ្វីដែលអ្នកចង់! បន្ទាប់មក ចុច "Check Your Code" ដើម្បីមើលលទ្ធផល។
-    </p>
-    
-    <textarea id="code" rows="8" style="width: 100%; margin-top: 1rem;">
-<p>Hello, I'm learning HTML!</p>
-    </textarea>
-    <footer>BasicCodeKh by Todd</footer>
-    <div style="margin-top: 1rem;">
-      <button onclick="checkCode()" class="cta-btn">✅ Check Your Code</button>
+  <div class="main-container">
+    <div class="editor-panel">
+      <div class="instructions">
+        <h3 data-lang="en">Step 2 ✅</h3>
+        <h3 data-lang="kh" style="display: none;">ជំហានទី ២ ✅</h3>
+        <p data-lang="en">HTML uses heading tags <code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code> to define headings. <code>&lt;h1&gt;</code> is the largest, and <code>&lt;h6&gt;</code> is the smallest.</p>
+        <p data-lang="kh" style="display: none;">HTML ប្រើ tag ចំណងជើង <code>&lt;h1&gt;</code> ដល់ <code>&lt;h6&gt;</code> ដើម្បីកំណត់ចំណងជើង។ <code>&lt;h1&gt;</code> ធំបំផុត ហើយ <code>&lt;h6&gt;</code> តូចបំផុត។</p>
+        <p data-lang="en"><strong>👉 Your Task:</strong> Type <code>&lt;h1&gt;Hello&lt;/h1&gt;</code> in the box below to test your knowledge.</p>
+        <p data-lang="kh" style="display: none;"><strong>👉 ភារកិច្ច:</strong> វាយ <code>&lt;h1&gt;Hello&lt;/h1&gt;</code> ខាងក្រោមដើម្បីសាកល្បងចំណេះដឹងរបស់អ្នក។</p>
+      </div>
+      <textarea id="code"></textarea>
+      <div class="btn-group">
+        <button onclick="checkCode()">✅ Check Your Code</button>
+        <button onclick="resetCode()">🔄 Reset</button>
+      </div>
+      <div class="next-step" id="nextStep">
+        <a href="lesson1.html" data-lang="en">⬅️ Previous</a>
+        <a href="lesson1.html" data-lang="kh" style="display: none;">⬅️ ជំហានមុន</a>
+        <a href="lesson3.html" data-lang="en" id="nextLink">➡️ Next Step</a>
+        <a href="lesson3.html" data-lang="kh" id="nextLinkKh">➡️ ជំហានបន្ទាប់</a>
+      </div>
     </div>
-
-    <iframe id="preview" style="width: 100%; height: 150px; margin-top: 1rem; border: 1px solid #ccc; border-radius: 6px;"></iframe>
-
-    <div id="surprise">
-      <div id="quote">🎉 Great job! Paragraphs are important for structure!</div>
-      <a href="lesson3.html" class="next-btn" data-lang="en">➡️ Next Step</a>
-      <a href="lesson3.html" class="next-btn" data-lang="kh" style="display: none;">➡️ ជំហានបន្ទាប់</a>
+    <div class="preview-panel">
+      <iframe id="preview"></iframe>
     </div>
-  </main>
+  </div>
 
   <audio id="successSound" src="success.mp3" preload="auto"></audio>
   <script src="../script.js"></script>
@@ -102,48 +149,51 @@
     const editor = document.getElementById("code");
     const preview = document.getElementById("preview");
     const sound = document.getElementById("successSound");
+    const nextStep = document.getElementById("nextStep");
+    const nextLink = document.getElementById("nextLink");
+    const nextLinkKh = document.getElementById("nextLinkKh");
 
-    function updatePreview() {
-      preview.srcdoc = `<!DOCTYPE html>
-<html><head><style>body { color: white; background: #1e293b; }</style></head><body>${editor.value}</body></html>`;
-    }
+    const defaultCode = "";
 
     editor.addEventListener("input", updatePreview);
-    updatePreview();
+
+    window.addEventListener("load", () => {
+      editor.focus();
+    });
+
+    function updatePreview() {
+      preview.srcdoc = `<!DOCTYPE html><html><head><style>body{background:white;color:black;padding:1rem;}</style></head><body>${editor.value}</body></html>`;
+    }
 
     function checkCode() {
       const code = editor.value.trim().toLowerCase();
-      const passed = code.includes("<p>") && code.includes("</p>");
+      const currentLang = document.querySelector('[data-lang][style*="block"]')?.dataset.lang || 'en';
 
-      const enQuotes = [
-        "🎉 Great job! Paragraphs are important for structure!",
-        "📘 Now your page has real content!",
-        "✍️ You just wrote your first HTML paragraph!"
-      ];
-      const khQuotes = [
-        "🎉 ល្អណាស់! កាដាក់ខេតអត្ថបទជួយឲ្យគេហទំព័រមានរចនាសម្ព័ន្ធ!",
-        "📘 ឥឡូវនេះគេហទំព័ររបស់អ្នកមានអត្ថបទហើយ!",
-        "✍️ អ្នកទើបតែសរសេរ paragraph HTML ដំបូង!"
-      ];
-
-      const currentLang = document.querySelector('h2[data-lang][style*="block"]')?.dataset.lang || 'en';
-      const surprise = document.getElementById("surprise");
-      const quoteEl = document.getElementById("quote");
-
-      if (passed) {
-        const quoteList = currentLang === 'kh' ? khQuotes : enQuotes;
-        quoteEl.innerText = quoteList[Math.floor(Math.random() * quoteList.length)];
-        surprise.style.display = "block";
-        sound.currentTime = 0;
+      if (code.includes("<h1>") && code.includes("</h1>")) {
+        alert(currentLang === "kh"
+          ? "✅ អ្នកបានប្រើ tag <h1> ដោយត្រឹមត្រូវ។"
+          : "✅ Great job! You used the <h1> tag correctly.");
         sound.play();
-        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+        nextLink.style.display = "inline-block";
+        nextLinkKh.style.display = "inline-block";
+        confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
       } else {
-        alert(currentLang === 'kh' ? "❌ សូមប្រាកដថាអ្នកបានប្រើ tag <p> និង </p>" : "❌ Make sure to use both <p> and </p> tags.");
-        surprise.style.display = "none";
+        alert(currentLang === "kh"
+          ? "❌ សូមប្រើ tag <h1> និង </h1> ដើម្បីបញ្ចប់។"
+          : "❌ Try again. Use both <h1> and </h1> tags.");
+        nextLink.style.display = "none";
+        nextLinkKh.style.display = "none";
       }
     }
+
+    function resetCode() {
+      editor.value = defaultCode;
+      updatePreview();
+      nextLink.style.display = "none";
+      nextLinkKh.style.display = "none";
+    }
+
+    updatePreview();
   </script>
 </body>
 </html>
-
-

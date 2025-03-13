@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lesson 4 - Line Breaks in HTML</title>
+  <title>Lesson 9 - Bold and Italic Text</title>
   <link rel="stylesheet" href="../styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -62,7 +62,7 @@
     }
     textarea {
       width: 100%;
-      height: 40px;
+      height: 60px;
       font-family: monospace;
       background-color: #0f172a;
       color: #f8fafc;
@@ -93,7 +93,8 @@
     }
     .next-step {
       margin-top: 1rem;
-      display: none;
+      display: flex;
+      gap: 1rem;
     }
     .next-step a {
       background: #10b981;
@@ -102,6 +103,9 @@
       border-radius: 8px;
       font-weight: bold;
       text-decoration: none;
+    }
+    #nextLink, #nextLinkKh {
+      display: none;
     }
   </style>
 </head>
@@ -114,12 +118,12 @@
   <div class="main-container">
     <div class="editor-panel">
       <div class="instructions">
-        <h3 data-lang="en">Step 4 ✅</h3>
-        <h3 data-lang="kh" style="display: none;">ជំហានទី ៤ ✅</h3>
-        <p data-lang="en">Use the <code>&lt;br&gt;</code> tag to break a line in HTML without starting a new paragraph.</p>
-        <p data-lang="kh" style="display: none;">ប្រើ tag <code>&lt;br&gt;</code> ដើម្បីបំបែកបន្ទាត់នៅក្នុង HTML ដោយមិនចាំបាច់ចាប់ផ្តើម paragraph ថ្មី។</p>
-        <p data-lang="en"><strong>👉 Your Task:</strong> Type <code>Hello&lt;br&gt;World!</code> below to test line breaks.</p>
-        <p data-lang="kh" style="display: none;"><strong>👉 ភារកិច្ច:</strong> វាយ <code>Hello&lt;br&gt;World!</code> ខាងក្រោម ដើម្បីសាកល្បងការបំបែកបន្ទាត់។</p>
+        <h3 data-lang="en">Step 9 ✅</h3>
+        <h3 data-lang="kh" style="display: none;">ជំហានទី ៩ ✅</h3>
+        <p data-lang="en">Use <code>&lt;strong&gt;</code> to make text <strong>bold</strong> and <code>&lt;em&gt;</code> to make text <em>italic</em>.</p>
+        <p data-lang="kh" style="display: none;">ប្រើ <code>&lt;strong&gt;</code> ដើម្បីធ្វើអត្ថបទអោយ <strong>ដិត</strong> និង <code>&lt;em&gt;</code> សម្រាប់អត្ថបទ <em>ទ្រេត</em>។</p>
+        <p data-lang="en"><strong>👉 Your Task:</strong> Type <code>&lt;strong&gt;Bold&lt;/strong&gt;</code> or <code>&lt;em&gt;Italic&lt;/em&gt;</code> below.</p>
+        <p data-lang="kh" style="display: none;"><strong>👉 ភារកិច្ច:</strong> វាយ <code>&lt;strong&gt;Bold&lt;/strong&gt;</code> ឬ <code>&lt;em&gt;Italic&lt;/em&gt;</code> ខាងក្រោម។</p>
       </div>
       <textarea id="code"></textarea>
       <div class="btn-group">
@@ -127,10 +131,10 @@
         <button onclick="resetCode()">🔄 Reset</button>
       </div>
       <div class="next-step" id="nextStep">
-        <a href="lesson3.html" data-lang="en">⬅️ Previous</a>
-        <a href="lesson3.html" data-lang="kh" style="display: none;">⬅️ ជំហានមុន</a>
-        <a href="lesson5.html" data-lang="en" id="nextLink">➡️ Next Step</a>
-        <a href="lesson5.html" data-lang="kh" id="nextLinkKh" style="display: none;">➡️ ជំហានបន្ទាប់</a>
+        <a href="lesson8.html" data-lang="en">⬅️ Previous</a>
+        <a href="lesson8.html" data-lang="kh" style="display: none;">⬅️ ជំហានមុន</a>
+        <a href="lesson10.html" data-lang="en" id="nextLink">➡️ Next Step</a>
+        <a href="lesson10.html" data-lang="kh" id="nextLinkKh" style="display: none;">➡️ ជំហានបន្ទាប់</a>
       </div>
     </div>
     <div class="preview-panel">
@@ -163,10 +167,10 @@
       const code = editor.value.trim().toLowerCase();
       const currentLang = document.querySelector('[data-lang][style*="block"]')?.dataset.lang || 'en';
 
-      if (code.includes("hello") && code.includes("<br>") && code.includes("world")) {
+      if ((code.includes("<strong>") && code.includes("</strong>")) || (code.includes("<em>") && code.includes("</em>"))) {
         alert(currentLang === "kh"
-          ? "✅ អ្នកបានប្រើ tag <br> ដោយត្រឹមត្រូវ។"
-          : "✅ Great job! You used the <br> tag correctly.");
+          ? "✅ អ្នកបានប្រើ tag <strong> ឬ <em> ដោយត្រឹមត្រូវ។"
+          : "✅ Great job! You used the <strong> or <em> tag correctly.");
         sound.play();
         if (currentLang === 'kh') {
           nextLinkKh.style.display = "inline-block";
@@ -178,8 +182,8 @@
         confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
       } else {
         alert(currentLang === "kh"
-          ? "❌ សូមប្រើ tag <br> និង Hello<br>World! ដូចឧទាហរណ៍។"
-          : "❌ Try again. Use <br> with Hello<br>World! as shown in the example.");
+          ? "❌ សូមប្រើ tag <strong> ឬ <em> ដើម្បីបញ្ចប់។"
+          : "❌ Try again. Use either the <strong> or <em> tag.");
         nextLink.style.display = "none";
         nextLinkKh.style.display = "none";
       }
@@ -196,4 +200,3 @@
   </script>
 </body>
 </html>
-

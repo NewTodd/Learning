@@ -1,102 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lesson 5 - Lists in HTML</title>
-  <link rel="stylesheet" href="../styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lesson 5 - Image Tag in HTML</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <style>
-    #surprise {
-      display: none;
-      background: #10b981;
-      color: white;
-      padding: 2rem;
-      border-radius: 12px;
-      text-align: center;
-      margin-top: 2rem;
-      font-size: 1.3rem;
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Noto Sans Khmer', sans-serif;
+      background-color: #0f172a;
+      color: #f8fafc;
     }
-    .next-btn {
-      margin-top: 1.5rem;
-      display: inline-block;
-      background: #2563eb;
-      color: #fff;
-      padding: 0.7rem 1.5rem;
-      border-radius: 6px;
-      text-decoration: none;
+    .toolbar {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      padding: 0.5rem 1rem;
+      gap: 1rem;
+    }
+    .toolbar button {
+      background-color: #334155;
+      color: white;
+      border: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
       font-weight: bold;
+      cursor: pointer;
+    }
+    .main-container {
+      display: flex;
+      flex-direction: row;
+      width: 90%;
+      max-width: 1200px;
+      height: 90vh;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+    .editor-panel {
+      width: 50%;
+      padding: 1rem;
+      background-color: #1e293b;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .instructions {
+      background-color: #334155;
+      border-radius: 8px;
+      padding: 1rem;
+      font-size: 0.95rem;
+      line-height: 1.6;
     }
     textarea {
-      background-color: #f8fafc;
-      color: #111827;
+      width: 100%;
+      height: 40px;
       font-family: monospace;
-      font-size: 1rem;
-      border: 1px solid #ccc;
+      background-color: #0f172a;
+      color: #f8fafc;
+      border: 1px solid #475569;
       border-radius: 6px;
       padding: 1rem;
     }
-    body.dark-mode textarea {
-      background-color: #1e293b;
-      color: #f8fafc;
-      border-color: #475569;
+    .btn-group button {
+      background: #2563eb;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 4px;
+      margin-right: 0.5rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .preview-panel {
+      width: 50%;
+      background-color: white;
+      color: black;
+      border-left: 2px solid #1e293b;
     }
     iframe {
-      background-color: white;
+      width: 100%;
+      height: 100%;
+      border: none;
     }
-    body.dark-mode iframe {
-      background-color: #1e293b;
+    .next-step {
+      margin-top: 1rem;
+      display: flex;
+      gap: 1rem;
+    }
+    .next-step a {
+      background: #10b981;
+      color: white;
+      padding: 0.5rem 1.2rem;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    #nextLink,
+    #nextLinkKh {
+      display: none;
     }
   </style>
 </head>
 <body>
-  <div class="lang-switch" style="text-align: right; margin: 1rem;">
+  <div class="toolbar">
     <button onclick="switchLanguage('en')">English</button>
     <button onclick="switchLanguage('kh')">ភាសាខ្មែរ</button>
-  </div>
-  <div class="theme-toggle" style="text-align: right; margin: 1rem;">
     <button id="themeToggle" onclick="toggleTheme()">🌙</button>
   </div>
-
-  <main style="max-width: 1000px; margin: auto; padding: 2rem;">
-    <h2 data-lang="en">Step 5: Creating Lists in HTML</h2>
-    <h2 data-lang="kh" style="display: none;">ជំហានទី ៥៖ បង្កើតបញ្ជីក្នុង HTML</h2>
-
-    <p data-lang="en">
-      HTML offers two main types of lists: <code>&lt;ul&gt;</code> for unordered (bulleted) lists and <code>&lt;ol&gt;</code> for ordered (numbered) lists. Each item inside the list is wrapped in an <code>&lt;li&gt;</code> tag.
-    </p>
-    <p data-lang="en" style="margin-top: 1rem; font-weight: bold;">
-      👉 Your task: Add a few items inside an unordered list using the <code>&lt;ul&gt;</code> and <code>&lt;li&gt;</code> tags!
-    </p>
-
-    <p data-lang="kh" style="display: none;">
-      HTML មានបញ្ជីពីរប្រភេទគឺ <code>&lt;ul&gt;</code> សម្រាប់បញ្ជីគ្មានលំដាប់ និង <code>&lt;ol&gt;</code> សម្រាប់បញ្ជីមានលំដាប់។ អត្ថបទក្នុងបញ្ជីត្រូវដាក់ក្នុង <code>&lt;li&gt;</code>។
-    </p>
-    <p data-lang="kh" style="display: none; margin-top: 1rem; font-weight: bold;">
-      👉 ភារកិច្ច៖ បន្ថែមធាតុខ្លះៗនៅក្នុង <code>&lt;ul&gt;</code> ដោយប្រើ tag <code>&lt;li&gt;</code>!
-    </p>
-
-    <textarea id="code" rows="8" style="width: 100%; margin-top: 1rem;">
-<ul>
-  <li>HTML</li>
-  <li>CSS</li>
-  <li>JavaScript</li>
-</ul>
-    </textarea>
-    <footer>BasicCodeKh by Todd</footer>
-    <div style="margin-top: 1rem;">
-      <button onclick="checkCode()" class="cta-btn">✅ Check Your Code</button>
+  <div class="main-container">
+    <div class="editor-panel">
+      <div class="instructions">
+        <h3 data-lang="en">Step 5 ✅</h3>
+        <h3 data-lang="kh" style="display: none;">ជំហានទី ៥ ✅</h3>
+        <p data-lang="en">In HTML, the <code>&lt;img&gt;</code> tag is used to display an image. It must include a <code>src</code> attribute that tells the browser where to find the image.</p>
+        <p data-lang="kh" style="display: none;">នៅក្នុង HTML tag <code>&lt;img&gt;</code> ត្រូវបានប្រើសម្រាប់បង្ហាញរូបភាព។ វាត្រូវតែមាន attribute <code>src</code> ដើម្បីប្រាប់កម្រិតទីតាំងរូបភាព។</p>
+        <p data-lang="en"><strong>👉 Your Task:</strong> Type <code>&lt;img src="cat.jpg"&gt;</code> in the box below to test your understanding of image tags.</p>
+        <p data-lang="kh" style="display: none;"><strong>👉 ភារកិច្ច:</strong> វាយ <code>&lt;img src="cat.jpg"&gt;</code> ខាងក្រោម ដើម្បីសាកល្បងការយល់ដឹងរបស់អ្នកអំពីរូបភាព។</p>
+      </div>
+      <textarea id="code"></textarea>
+      <div class="btn-group">
+        <button onclick="checkCode()">✅ Check Your Code</button>
+        <button onclick="resetCode()">🔄 Reset</button>
+      </div>
+      <div class="next-step" id="nextStep">
+        <a href="lesson4.html" data-lang="en">⬅️ Previous</a>
+        <a href="lesson4.html" data-lang="kh" style="display: none;">⬅️ ជំហានមុន</a>
+        <a href="lesson6.html" data-lang="en" id="nextLink">➡️ Next Step</a>
+        <a href="lesson6.html" data-lang="kh" id="nextLinkKh" style="display: none;">➡️ ជំហានបន្ទាប់</a>
+      </div>
     </div>
-
-    <iframe id="preview" style="width: 100%; height: 150px; margin-top: 1rem; border: 1px solid #ccc; border-radius: 6px;"></iframe>
-
-    <div id="surprise">
-      <div id="quote">🎉 Excellent! Lists help organize information clearly!</div>
-      <a href="quiz1.html" class="next-btn" data-lang="en">➡️ Quiz 1</a>
-      <a href="quiz1.html" class="next-btn" data-lang="kh" style="display: none;">➡️ សំណួរ ១</a>
+    <div class="preview-panel">
+      <iframe id="preview"></iframe>
     </div>
-  </main>
+  </div>
 
   <audio id="successSound" src="success.mp3" preload="auto"></audio>
   <script src="../script.js"></script>
@@ -104,62 +149,56 @@
     const editor = document.getElementById("code");
     const preview = document.getElementById("preview");
     const sound = document.getElementById("successSound");
+    const nextLink = document.getElementById("nextLink");
+    const nextLinkKh = document.getElementById("nextLinkKh");
 
-    editor.addEventListener("input", () => {
-      preview.srcdoc = `<!DOCTYPE html>
-<html>
-  <head>
-    <style>
-      body { color: white; background: #1e293b; }
-    </style>
-  </head>
-  <body>${editor.value}</body>
-</html>`;
+    const defaultCode = "";
+
+    editor.addEventListener("input", updatePreview);
+
+    window.addEventListener("load", () => {
+      editor.focus();
     });
 
-    preview.srcdoc = `<!DOCTYPE html>
-<html>
-  <head>
-    <style>
-      body { color: white; background: #1e293b; }
-    </style>
-  </head>
-  <body>${editor.value}</body>
-</html>`;
+    function updatePreview() {
+      preview.srcdoc = `<!DOCTYPE html><html><head><style>body{background:white;color:black;padding:1rem;}</style></head><body>${editor.value}</body></html>`;
+    }
 
     function checkCode() {
       const code = editor.value.trim().toLowerCase();
-      const passed = code.includes("<ul>") && code.includes("<li>");
+      const currentLang = document.querySelector('[data-lang][style*="block"]')?.dataset.lang || 'en';
 
-      const enQuotes = [
-        "🎉 Excellent! Lists help organize information clearly!",
-        "📋 Great job creating a list!",
-        "🗂️ Now you can organize things with ease!"
-      ];
-      const khQuotes = [
-        "🎉 ធ្វើបានល្អណាស់! បញ្ជីជួយរៀបចំព័ត៌មានឱ្យច្បាស់។",
-        "📋 អ្នកបានបង្កើតបញ្ជីជោគជ័យ!",
-        "🗂️ អ្នកអាចរៀបចំអត្ថបទបានល្អជាងមុនហើយ!"
-      ];
-
-      const currentLang = document.querySelector('h2[data-lang][style*="block"]')?.dataset.lang || 'en';
-      const quoteEl = document.getElementById("quote");
-      const surprise = document.getElementById("surprise");
-
-      if (passed) {
-        const quotes = currentLang === 'kh' ? khQuotes : enQuotes;
-        quoteEl.innerText = quotes[Math.floor(Math.random() * quotes.length)];
-        surprise.style.display = "block";
-        sound.currentTime = 0;
+      if (code.includes("<img") && code.includes("src")) {
+        alert(currentLang === "kh"
+          ? "✅ អ្នកបានប្រើ tag <img> ដោយត្រឹមត្រូវ។"
+          : "✅ Great job! You used the <img> tag correctly.");
         sound.play();
-        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+        if (currentLang === 'kh') {
+          nextLinkKh.style.display = "inline-block";
+          nextLink.style.display = "none";
+        } else {
+          nextLink.style.display = "inline-block";
+          nextLinkKh.style.display = "none";
+        }
+        confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
       } else {
-        alert(currentLang === 'kh'
-          ? "❌ សូមប្រាកដថាអ្នកប្រើ tag <ul> និង <li> ក្នុងកូដរបស់អ្នក។"
-          : "❌ Make sure you use <ul> and <li> tags in your code.");
-        surprise.style.display = "none";
+        alert(currentLang === "kh"
+          ? "❌ សូមប្រើ tag <img> និង src ដើម្បីបញ្ចប់។"
+          : "❌ Try again. Use the <img> tag with a src attribute.");
+        nextLink.style.display = "none";
+        nextLinkKh.style.display = "none";
       }
     }
+
+    function resetCode() {
+      editor.value = defaultCode;
+      updatePreview();
+      nextLink.style.display = "none";
+      nextLinkKh.style.display = "none";
+    }
+
+    updatePreview();
   </script>
 </body>
 </html>
+

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lesson 11 - HTML Quiz</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <style>
+    body {
+      font-family: 'Noto Sans Khmer', sans-serif;
+      background-color: #0f172a;
+      color: #f8fafc;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      min-height: 100vh;
+    }
+    .toolbar {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      padding-bottom: 1rem;
+      gap: 1rem;
+    }
+    .toolbar button {
+      background-color: #334155;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .quiz-container {
+      background-color: #1e293b;
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 700px;
+      width: 100%;
+    }
+    .question {
+      margin-bottom: 1.5rem;
+    }
+    .question h3 {
+      margin-bottom: 0.5rem;
+    }
+    .options label {
+      display: block;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+    }
+    .btn-group {
+      margin-top: 1.5rem;
+    }
+    .btn-group button {
+      background: #2563eb;
+      color: white;
+      padding: 0.6rem 1.4rem;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .explanation {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #a5f3fc;
+      display: none;
+    }
+    .explanation[data-lang="kh"] {
+      display: none;
+    }
+    .next-step {
+      margin-top: 2rem;
+      display: none;
+    }
+    .next-step a {
+      background: #10b981;
+      color: white;
+      padding: 0.5rem 1.2rem;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <button onclick="switchLanguage('en')">English</button>
+    <button onclick="switchLanguage('kh')">ភាសាខ្មែរ</button>
+    <button id="themeToggle" onclick="toggleTheme()">🌙</button>
+  </div>
+  <div class="quiz-container">
+    <h2 data-lang="en">📝 HTML Basics Quiz</h2>
+    <h2 data-lang="kh" style="display: none;">📝 ការសម្ភាសន៍ HTML មូលដ្ឋាន</h2>
+
+    <div class="question">
+      <h3 data-lang="en">1. What does HTML stand for?</h3>
+      <h3 data-lang="kh" style="display: none;">១. HTML មានន័យថាអ្វី?</h3>
+      <div class="options">
+        <label><input type="radio" name="q1" value="a" /> HyperText Markup Language</label>
+        <label><input type="radio" name="q1" value="b" /> Hyper Tool Multi Language</label>
+        <label><input type="radio" name="q1" value="c" /> Hyperlinks Text Machine Language</label>
+      </div>
+      <div class="explanation" data-lang="en">✅ HTML stands for HyperText Markup Language. It is the standard language for creating web pages.</div>
+      <div class="explanation" data-lang="kh">✅ HTML មានន័យថា HyperText Markup Language។ វាជាភាសាមានស្តង់ដារ សម្រាប់បង្កើតគេហទំព័រ។</div>
+    </div>
+
+    <div class="question">
+      <h3 data-lang="en">2. Which tag is used for the largest heading?</h3>
+      <h3 data-lang="kh" style="display: none;">២. តើ tag ណាសម្រាប់ចំណងជើងធំបំផុត?</h3>
+      <div class="options">
+        <label><input type="radio" name="q2" value="a" /> &lt;h6&gt;</label>
+        <label><input type="radio" name="q2" value="b" /> &lt;h1&gt;</label>
+        <label><input type="radio" name="q2" value="c" /> &lt;head&gt;</label>
+      </div>
+      <div class="explanation" data-lang="en">✅ &lt;h1&gt; defines the largest and most important heading on the page.</div>
+      <div class="explanation" data-lang="kh">✅ &lt;h1&gt; គឺជា tag សម្រាប់ចំណងជើងធំបំផុត និងសំខាន់បំផុត។</div>
+    </div>
+
+    <div class="question">
+      <h3 data-lang="en">3. What tag is used to add an image?</h3>
+      <h3 data-lang="kh" style="display: none;">៣. តើ tag ណាដែលប្រើដើម្បីបន្ថែមរូបភាព?</h3>
+      <div class="options">
+        <label><input type="radio" name="q3" value="a" /> &lt;img&gt;</label>
+        <label><input type="radio" name="q3" value="b" /> &lt;src&gt;</label>
+        <label><input type="radio" name="q3" value="c" /> &lt;picture&gt;</label>
+      </div>
+      <div class="explanation" data-lang="en">✅ The &lt;img&gt; tag is used to embed images in HTML documents.</div>
+      <div class="explanation" data-lang="kh">✅ Tag &lt;img&gt; ត្រូវបានប្រើដើម្បីបញ្ចូលរូបភាពនៅក្នុងឯកសារ HTML។</div>
+    </div>
+
+    <div class="question">
+      <h3 data-lang="en">4. What is the purpose of the &lt;br&gt; tag?</h3>
+      <h3 data-lang="kh" style="display: none;">៤. តើគោលបំណងរបស់ tag &lt;br&gt; ជាអ្វី?</h3>
+      <div class="options">
+        <label><input type="radio" name="q4" value="a" /> Creates a new paragraph</label>
+        <label><input type="radio" name="q4" value="b" /> Inserts a line break</label>
+        <label><input type="radio" name="q4" value="c" /> Adds bold text</label>
+      </div>
+      <div class="explanation" data-lang="en">✅ The &lt;br&gt; tag is used to insert a single line break in text.</div>
+      <div class="explanation" data-lang="kh">✅ Tag &lt;br&gt; ត្រូវបានប្រើសម្រាប់បញ្ចូលការចេញបន្ទាត់ថ្មីមួយនៅក្នុងអត្ថបទ។</div>
+    </div>
+
+    <div class="btn-group">
+      <button onclick="checkQuiz()">✅ Submit Quiz</button>
+    </div>
+    <div class="next-step" id="nextStep">
+      <a href="lesson10.html" data-lang="en">⬅️ Previous</a>
+      <a href="lesson10.html" data-lang="kh" style="display: none;">⬅️ ជំហានមុន</a>
+      <a href="lesson12.html" data-lang="en" id="nextLink">➡️ Next Step</a>
+      <a href="lesson12.html" data-lang="kh" id="nextLinkKh" style="display: none;">➡️ ជំហានបន្ទាប់</a>
+    </div>
+  </div>
+
+  <audio id="successSound" src="/success.mp3" preload="auto"></audio>
+  <script src="../script.js"></script>
+  <script>
+    function checkQuiz() {
+      const q1 = document.querySelector('input[name="q1"]:checked')?.value;
+      const q2 = document.querySelector('input[name="q2"]:checked')?.value;
+      const q3 = document.querySelector('input[name="q3"]:checked')?.value;
+      const q4 = document.querySelector('input[name="q4"]:checked')?.value;
+      const currentLang = document.querySelector('[data-lang][style*="block"]')?.dataset.lang || 'en';
+
+      let score = 0;
+      if (q1 === 'a') score++;
+      if (q2 === 'b') score++;
+      if (q3 === 'a') score++;
+      if (q4 === 'b') score++;
+
+      const percent = (score / 4) * 100;
+
+      document.querySelectorAll(`.explanation[data-lang="${currentLang}"]`).forEach(e => e.style.display = 'block');
+
+      if (percent >= 75) {
+        alert(currentLang === 'kh'
+          ? '🎉 អបអរសាទរ! អ្នកបានឆ្លើយត្រូវ ' + percent + '%។'
+          : '🎉 Congratulations! You scored ' + percent + '%.');
+        document.getElementById("successSound").play();
+        document.getElementById("nextStep").style.display = "flex";
+        confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+      } else {
+        alert(currentLang === 'kh'
+          ? '❌ អ្នកបានឆ្លើយត្រូវតិចជាង 75%។ សូមព្យាយាមម្តងទៀត។'
+          : '❌ You scored less than 75%. Try again.');
+        document.getElementById("nextStep").style.display = "none";
+      }
+    }
+  </script>
+  <footer>BasicCodeKH by Todd</footer>
+</body>
+</html>
+

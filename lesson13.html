@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lesson 13 - Input Tag in HTML</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <style>
+    body {
+      font-family: 'Noto Sans Khmer', sans-serif;
+      background-color: #0f172a;
+      color: #f8fafc;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      min-height: 100vh;
+    }
+    .toolbar {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      padding-bottom: 1rem;
+      gap: 1rem;
+    }
+    .toolbar button {
+      background-color: #334155;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .lesson-container {
+      background-color: #1e293b;
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 800px;
+      width: 100%;
+    }
+    .instruction {
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+    textarea {
+      width: 100%;
+      height: 60px;
+      font-family: monospace;
+      background-color: #0f172a;
+      color: #f8fafc;
+      border: 1px solid #475569;
+      border-radius: 6px;
+      padding: 1rem;
+    }
+    .btn-group {
+      margin-top: 1rem;
+    }
+    .btn-group button {
+      background: #2563eb;
+      color: white;
+      padding: 0.5rem 1.2rem;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-right: 0.5rem;
+    }
+    iframe {
+      width: 100%;
+      height: 200px;
+      margin-top: 1rem;
+      border: none;
+      background: white;
+      color: black;
+    }
+    .next-step {
+      margin-top: 2rem;
+      display: none;
+      gap: 1rem;
+    }
+    .next-step a {
+      background: #10b981;
+      color: white;
+      padding: 0.5rem 1.2rem;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <button onclick="switchLanguage('en')">English</button>
+    <button onclick="switchLanguage('kh')">ភាសាខ្មែរ</button>
+    <button id="themeToggle" onclick="toggleTheme()">🌙</button>
+  </div>
+  <div class="lesson-container">
+    <h2 data-lang="en">Lesson 13: HTML Input Fields</h2>
+    <h2 data-lang="kh" style="display:none">មេរៀនទី ១៣៖ បញ្ជូលព័ត៌មានក្នុង HTML</h2>
+
+    <p class="instruction" data-lang="en">
+      The <code>&lt;input&gt;</code> tag is used to collect user input. It can be different types such as text, email, password, and more.
+    </p>
+    <p class="instruction" data-lang="kh" style="display:none">
+      <code>&lt;input&gt;</code> គឺជាធាតុសម្រាប់ឲ្យអ្នកប្រើបញ្ចូលព័ត៌មាន។ វាអាចមានប្រភេទផ្សេងៗដូចជា text, email, password និងផ្សេងទៀត។
+    </p>
+
+    <p data-lang="en"><strong>👉 Your Task:</strong> Type <code>&lt;input type="text" /&gt;</code> in the box below to create a text input.</p>
+    <p data-lang="kh" style="display:none"><strong>👉 ភារកិច្ច:</strong> វាយ <code>&lt;input type="text" /&gt;</code> ដើម្បីបង្កើតបញ្ជូលព័ត៌មាន។</p>
+
+    <textarea id="code"></textarea>
+
+    <div class="btn-group">
+      <button onclick="checkCode()">✅ Check Your Code</button>
+      <button onclick="resetCode()">🔄 Reset</button>
+    </div>
+
+    <iframe id="preview"></iframe>
+
+    <div class="next-step" id="nextStep">
+      <a href="lesson12.html" data-lang="en">⬅️ Previous</a>
+      <a href="lesson12.html" data-lang="kh" style="display:none">⬅️ ជំហានមុន</a>
+      <a href="lesson14.html" data-lang="en">➡️ Next Step</a>
+      <a href="lesson14.html" data-lang="kh" style="display:none">➡️ ជំហានបន្ទាប់</a>
+    </div>
+  </div>
+
+  <audio id="successSound" src="success.mp3" preload="auto"></audio>
+  <script src="../script.js"></script>
+  <script>
+    const editor = document.getElementById("code");
+    const preview = document.getElementById("preview");
+    const sound = document.getElementById("successSound");
+    const nextStep = document.getElementById("nextStep");
+
+    editor.addEventListener("input", updatePreview);
+
+    function updatePreview() {
+      preview.srcdoc = `<!DOCTYPE html><html><head><style>body{background:white;color:black;padding:1rem;}</style></head><body>${editor.value}</body></html>`;
+    }
+
+    function checkCode() {
+      const code = editor.value.trim().toLowerCase();
+      const lang = document.querySelector('[data-lang][style*="block"]')?.dataset.lang || 'en';
+
+      if (code.includes('<input') && code.includes('type="text"')) {
+        alert(lang === 'kh' ? '✅ អ្នកបានប្រើ <input type="text"> បានត្រឹមត្រូវ។' : '✅ Great job! You used <input type="text"> correctly.');
+        sound.play();
+        nextStep.style.display = "flex";
+        confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+      } else {
+        alert(lang === 'kh' ? '❌ សូមប្រើ <input type="text" /> ដោយត្រឹមត្រូវ។' : '❌ Try again. Use <input type="text" /> properly.');
+        nextStep.style.display = "none";
+      }
+    }
+
+    function resetCode() {
+      editor.value = "";
+      updatePreview();
+      nextStep.style.display = "none";
+    }
+
+    updatePreview();
+  </script>
+</body>
+</html>
