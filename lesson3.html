@@ -222,6 +222,15 @@ document.getElementById('completeLesson').addEventListener('click', () => {
   }
 });
 </script>
+<script src="../lesson-guard.js"></script>
+<script>
+  handleLessonAccess("lesson2.html", "lesson1.html"); // change per lesson
+  document.addEventListener('DOMContentLoaded', () => {
+  const savedLang = localStorage.getItem('selectedLanguage') || 'en';
+  updateLanguageDisplay(savedLang);
+});
+
+</script>
 
 </body>
 </html>

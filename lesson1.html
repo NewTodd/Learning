@@ -170,6 +170,8 @@
     const sound = document.getElementById("successSound");
     const nextStep = document.getElementById("nextStep");
     const defaultCode = "";
+    const thisLesson = "lesson2.html";
+const previousLesson = "lesson1.html";
 
     editor.addEventListener("input", updatePreview);
     window.addEventListener("load", () => editor.focus());
@@ -229,7 +231,55 @@ document.getElementById('completeLesson').addEventListener('click', () => {
     alert('✅ You have already marked this lesson as complete.');
   }
 });
+const thisLesson = "lesson1.html"; // current lesson
+  const previousLesson = null;       // null because this is the first lesson
+
+  // 🟢 Bilingual support
+  const lang = document.querySelector('[data-lang][style*="block"]')?.dataset.lang || 'en';
+
+  // 🔐 Prevent access if previous lesson isn't complete (for future lessons)
+  if (previousLesson) {
+    const completed = JSON.parse(localStorage.getItem('completedSteps') || '[]');
+    if (!completed.includes(previousLesson)) {
+      alert(lang === "kh"
+        ? "🔒 សូមបញ្ចប់មេរៀនមុនសិន មុននឹងបន្តមេរៀននេះ។"
+        : "🔒 Please complete the previous lesson before continuing.");
+      window.location.href = "lesson-overview.html";
+    }
+  }
+
+  // ✅ Unlock Next Lesson Only After Completion
+  document.getElementById('completeLesson').addEventListener('click', () => {
+    let completedSteps = JSON.parse(localStorage.getItem('completedSteps') || '[]');
+    if (!completedSteps.includes(thisLesson)) {
+      completedSteps.push(thisLesson);
+      localStorage.setItem('completedSteps', JSON.stringify(completedSteps));
+      alert(lang === "kh"
+        ? "✅ អ្នកបានបញ្ចប់មេរៀននេះដោយជោគជ័យ។"
+        : "✅ Lesson marked as complete!");
+    } else {
+      alert(lang === "kh"
+        ? "✅ អ្នកបានបញ្ចប់មេរៀននេះរួចហើយ។"
+        : "✅ You’ve already completed this lesson.");
+    }
+  });
+  function switchLanguage(lang) {
+  localStorage.setItem('selectedLanguage', lang);
+  updateLanguageDisplay(lang);
+}
+
+function updateLanguageDisplay(lang) {
+  document.querySelectorAll('[data-lang]').forEach(el => {
+    el.style.display = el.getAttribute('data-lang') === lang ? 'block' : 'none';
+  });
+}
+document.addEventListener('DOMContentLoaded', () => {
+  const savedLang = localStorage.getItem('selectedLanguage') || 'en';
+  updateLanguageDisplay(savedLang);
+});
+
 </script>
+
 
 </body>
 </html>

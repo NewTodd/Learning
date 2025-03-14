@@ -40,4 +40,8 @@ function switchLanguage(lang) {
     const isOpen = card.classList.contains("active");
     button.textContent = (isOpen ? "▼" : "▶️") + " " + button.textContent.slice(2).trim();
   }
+  document.addEventListener('DOMContentLoaded', () => {
+    const savedLang = localStorage.getItem('selectedLanguage') || 'en';
+    updateLanguageDisplay(savedLang);
+  });
   
